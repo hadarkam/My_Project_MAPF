@@ -40,7 +40,7 @@ unordered_set
 a_star.hpp
 ../include/libMultiRobotPlanning/a_star.hpp
 
-/home/hadar/Project/libMultiRobotPlanning/example/mapf_prioritized_sipp.cpp
+/home/hadar/My_Project_MAPF/example/mapf_prioritized_sipp.cpp
 fstream
 -
 iostream

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hadar/Project/libMultiRobotPlanning
+CMAKE_SOURCE_DIR = /home/hadar/My_Project_MAPF
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hadar/Project/libMultiRobotPlanning/build
+CMAKE_BINARY_DIR = /home/hadar/My_Project_MAPF/build
 
 # Utility rule file for clang-format.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/hadar/Project/libMultiRobotPlanning/build
 include CMakeFiles/clang-format.dir/progress.make
 
 CMakeFiles/clang-format:
-	clang-format -i /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/a_star.hpp /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/a_star_epsilon.hpp /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/assignment.hpp /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/cbs.hpp /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/cbs_ta.hpp /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/ecbs.hpp /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/ecbs_ta.hpp /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/neighbor.hpp /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/next_best_assignment.hpp /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/planresult.hpp /home/hadar/Project/libMultiRobotPlanning/include/libMultiRobotPlanning/sipp.hpp /home/hadar/Project/libMultiRobotPlanning/example/a_star.cpp /home/hadar/Project/libMultiRobotPlanning/example/a_star_epsilon.cpp /home/hadar/Project/libMultiRobotPlanning/example/assignment.cpp /home/hadar/Project/libMultiRobotPlanning/example/cbs.cpp /home/hadar/Project/libMultiRobotPlanning/example/cbs_ta.cpp /home/hadar/Project/libMultiRobotPlanning/example/ecbs.cpp /home/hadar/Project/libMultiRobotPlanning/example/ecbs_ta.cpp /home/hadar/Project/libMultiRobotPlanning/example/mapf_prioritized_sipp.cpp /home/hadar/Project/libMultiRobotPlanning/example/next_best_assignment.cpp /home/hadar/Project/libMultiRobotPlanning/example/shortest_path_heuristic.cpp /home/hadar/Project/libMultiRobotPlanning/example/shortest_path_heuristic.hpp /home/hadar/Project/libMultiRobotPlanning/example/sipp.cpp /home/hadar/Project/libMultiRobotPlanning/example/timer.hpp
+	clang-format -i /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/a_star.hpp /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/a_star_epsilon.hpp /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/assignment.hpp /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/cbs.hpp /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/cbs_ta.hpp /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/ecbs.hpp /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/ecbs_ta.hpp /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/neighbor.hpp /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/next_best_assignment.hpp /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/planresult.hpp /home/hadar/My_Project_MAPF/include/libMultiRobotPlanning/sipp.hpp /home/hadar/My_Project_MAPF/example/a_star.cpp /home/hadar/My_Project_MAPF/example/a_star_epsilon.cpp /home/hadar/My_Project_MAPF/example/assignment.cpp /home/hadar/My_Project_MAPF/example/cbs.cpp /home/hadar/My_Project_MAPF/example/cbs_ta.cpp /home/hadar/My_Project_MAPF/example/ecbs.cpp /home/hadar/My_Project_MAPF/example/ecbs_ta.cpp /home/hadar/My_Project_MAPF/example/mapf_prioritized_sipp.cpp /home/hadar/My_Project_MAPF/example/next_best_assignment.cpp /home/hadar/My_Project_MAPF/example/shortest_path_heuristic.cpp /home/hadar/My_Project_MAPF/example/shortest_path_heuristic.hpp /home/hadar/My_Project_MAPF/example/sipp.cpp /home/hadar/My_Project_MAPF/example/timer.hpp
 
 clang-format: CMakeFiles/clang-format
 clang-format: CMakeFiles/clang-format.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/clang-format.dir/clean:
 .PHONY : CMakeFiles/clang-format.dir/clean
 
 CMakeFiles/clang-format.dir/depend:
-	cd /home/hadar/Project/libMultiRobotPlanning/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hadar/Project/libMultiRobotPlanning /home/hadar/Project/libMultiRobotPlanning /home/hadar/Project/libMultiRobotPlanning/build /home/hadar/Project/libMultiRobotPlanning/build /home/hadar/Project/libMultiRobotPlanning/build/CMakeFiles/clang-format.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/hadar/My_Project_MAPF/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hadar/My_Project_MAPF /home/hadar/My_Project_MAPF /home/hadar/My_Project_MAPF/build /home/hadar/My_Project_MAPF/build /home/hadar/My_Project_MAPF/build/CMakeFiles/clang-format.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/clang-format.dir/depend
 

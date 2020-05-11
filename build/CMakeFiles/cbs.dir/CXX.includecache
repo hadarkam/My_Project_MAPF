@@ -32,7 +32,7 @@ a_star.hpp
 vector
 -
 
-/home/hadar/Project/libMultiRobotPlanning/example/cbs.cpp
+/home/hadar/My_Project_MAPF/example/cbs.cpp
 fstream
 -
 iostream
@@ -46,9 +46,9 @@ yaml-cpp/yaml.h
 libMultiRobotPlanning/cbs.hpp
 -
 timer.hpp
-/home/hadar/Project/libMultiRobotPlanning/example/timer.hpp
+/home/hadar/My_Project_MAPF/example/timer.hpp
 
-/home/hadar/Project/libMultiRobotPlanning/example/timer.hpp
+/home/hadar/My_Project_MAPF/example/timer.hpp
 chrono
 -
 iostream

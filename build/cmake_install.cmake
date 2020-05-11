@@ -1,4 +1,4 @@
-# Install script for directory: /home/hadar/Project/libMultiRobotPlanning
+# Install script for directory: /home/hadar/My_Project_MAPF
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/hadar/Project/libMultiRobotPlanning/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/hadar/My_Project_MAPF/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

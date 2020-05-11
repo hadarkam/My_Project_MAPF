@@ -22,7 +22,7 @@ set
 libMultiRobotPlanning/assignment.hpp
 -
 
-/home/hadar/Project/libMultiRobotPlanning/example/next_best_assignment.cpp
+/home/hadar/My_Project_MAPF/example/next_best_assignment.cpp
 fstream
 -
 iostream

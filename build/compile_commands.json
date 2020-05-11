@@ -1,52 +1,52 @@
 [
 {
-  "directory": "/home/hadar/Project/libMultiRobotPlanning/build",
-  "command": "/usr/bin/c++   -I/home/hadar/Project/libMultiRobotPlanning/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/sipp.dir/example/sipp.cpp.o -c /home/hadar/Project/libMultiRobotPlanning/example/sipp.cpp",
-  "file": "/home/hadar/Project/libMultiRobotPlanning/example/sipp.cpp"
+  "directory": "/home/hadar/My_Project_MAPF/build",
+  "command": "/usr/bin/c++   -I/home/hadar/My_Project_MAPF/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/sipp.dir/example/sipp.cpp.o -c /home/hadar/My_Project_MAPF/example/sipp.cpp",
+  "file": "/home/hadar/My_Project_MAPF/example/sipp.cpp"
 },
 {
-  "directory": "/home/hadar/Project/libMultiRobotPlanning/build",
-  "command": "/usr/bin/c++   -I/home/hadar/Project/libMultiRobotPlanning/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/next_best_assignment.dir/example/next_best_assignment.cpp.o -c /home/hadar/Project/libMultiRobotPlanning/example/next_best_assignment.cpp",
-  "file": "/home/hadar/Project/libMultiRobotPlanning/example/next_best_assignment.cpp"
+  "directory": "/home/hadar/My_Project_MAPF/build",
+  "command": "/usr/bin/c++   -I/home/hadar/My_Project_MAPF/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/next_best_assignment.dir/example/next_best_assignment.cpp.o -c /home/hadar/My_Project_MAPF/example/next_best_assignment.cpp",
+  "file": "/home/hadar/My_Project_MAPF/example/next_best_assignment.cpp"
 },
 {
-  "directory": "/home/hadar/Project/libMultiRobotPlanning/build",
-  "command": "/usr/bin/c++   -I/home/hadar/Project/libMultiRobotPlanning/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/cbs_ta.dir/example/cbs_ta.cpp.o -c /home/hadar/Project/libMultiRobotPlanning/example/cbs_ta.cpp",
-  "file": "/home/hadar/Project/libMultiRobotPlanning/example/cbs_ta.cpp"
+  "directory": "/home/hadar/My_Project_MAPF/build",
+  "command": "/usr/bin/c++   -I/home/hadar/My_Project_MAPF/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/cbs_ta.dir/example/cbs_ta.cpp.o -c /home/hadar/My_Project_MAPF/example/cbs_ta.cpp",
+  "file": "/home/hadar/My_Project_MAPF/example/cbs_ta.cpp"
 },
 {
-  "directory": "/home/hadar/Project/libMultiRobotPlanning/build",
-  "command": "/usr/bin/c++   -I/home/hadar/Project/libMultiRobotPlanning/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/ecbs_ta.dir/example/ecbs_ta.cpp.o -c /home/hadar/Project/libMultiRobotPlanning/example/ecbs_ta.cpp",
-  "file": "/home/hadar/Project/libMultiRobotPlanning/example/ecbs_ta.cpp"
+  "directory": "/home/hadar/My_Project_MAPF/build",
+  "command": "/usr/bin/c++   -I/home/hadar/My_Project_MAPF/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/ecbs_ta.dir/example/ecbs_ta.cpp.o -c /home/hadar/My_Project_MAPF/example/ecbs_ta.cpp",
+  "file": "/home/hadar/My_Project_MAPF/example/ecbs_ta.cpp"
 },
 {
-  "directory": "/home/hadar/Project/libMultiRobotPlanning/build",
-  "command": "/usr/bin/c++   -I/home/hadar/Project/libMultiRobotPlanning/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/ecbs.dir/example/ecbs.cpp.o -c /home/hadar/Project/libMultiRobotPlanning/example/ecbs.cpp",
-  "file": "/home/hadar/Project/libMultiRobotPlanning/example/ecbs.cpp"
+  "directory": "/home/hadar/My_Project_MAPF/build",
+  "command": "/usr/bin/c++   -I/home/hadar/My_Project_MAPF/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/ecbs.dir/example/ecbs.cpp.o -c /home/hadar/My_Project_MAPF/example/ecbs.cpp",
+  "file": "/home/hadar/My_Project_MAPF/example/ecbs.cpp"
 },
 {
-  "directory": "/home/hadar/Project/libMultiRobotPlanning/build",
-  "command": "/usr/bin/c++   -I/home/hadar/Project/libMultiRobotPlanning/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/cbs.dir/example/cbs.cpp.o -c /home/hadar/Project/libMultiRobotPlanning/example/cbs.cpp",
-  "file": "/home/hadar/Project/libMultiRobotPlanning/example/cbs.cpp"
+  "directory": "/home/hadar/My_Project_MAPF/build",
+  "command": "/usr/bin/c++   -I/home/hadar/My_Project_MAPF/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/cbs.dir/example/cbs.cpp.o -c /home/hadar/My_Project_MAPF/example/cbs.cpp",
+  "file": "/home/hadar/My_Project_MAPF/example/cbs.cpp"
 },
 {
-  "directory": "/home/hadar/Project/libMultiRobotPlanning/build",
-  "command": "/usr/bin/c++   -I/home/hadar/Project/libMultiRobotPlanning/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/mapf_prioritized_sipp.dir/example/mapf_prioritized_sipp.cpp.o -c /home/hadar/Project/libMultiRobotPlanning/example/mapf_prioritized_sipp.cpp",
-  "file": "/home/hadar/Project/libMultiRobotPlanning/example/mapf_prioritized_sipp.cpp"
+  "directory": "/home/hadar/My_Project_MAPF/build",
+  "command": "/usr/bin/c++   -I/home/hadar/My_Project_MAPF/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/mapf_prioritized_sipp.dir/example/mapf_prioritized_sipp.cpp.o -c /home/hadar/My_Project_MAPF/example/mapf_prioritized_sipp.cpp",
+  "file": "/home/hadar/My_Project_MAPF/example/mapf_prioritized_sipp.cpp"
 },
 {
-  "directory": "/home/hadar/Project/libMultiRobotPlanning/build",
-  "command": "/usr/bin/c++   -I/home/hadar/Project/libMultiRobotPlanning/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/a_star_epsilon.dir/example/a_star_epsilon.cpp.o -c /home/hadar/Project/libMultiRobotPlanning/example/a_star_epsilon.cpp",
-  "file": "/home/hadar/Project/libMultiRobotPlanning/example/a_star_epsilon.cpp"
+  "directory": "/home/hadar/My_Project_MAPF/build",
+  "command": "/usr/bin/c++   -I/home/hadar/My_Project_MAPF/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/a_star_epsilon.dir/example/a_star_epsilon.cpp.o -c /home/hadar/My_Project_MAPF/example/a_star_epsilon.cpp",
+  "file": "/home/hadar/My_Project_MAPF/example/a_star_epsilon.cpp"
 },
 {
-  "directory": "/home/hadar/Project/libMultiRobotPlanning/build",
-  "command": "/usr/bin/c++   -I/home/hadar/Project/libMultiRobotPlanning/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/assignment.dir/example/assignment.cpp.o -c /home/hadar/Project/libMultiRobotPlanning/example/assignment.cpp",
-  "file": "/home/hadar/Project/libMultiRobotPlanning/example/assignment.cpp"
+  "directory": "/home/hadar/My_Project_MAPF/build",
+  "command": "/usr/bin/c++   -I/home/hadar/My_Project_MAPF/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/assignment.dir/example/assignment.cpp.o -c /home/hadar/My_Project_MAPF/example/assignment.cpp",
+  "file": "/home/hadar/My_Project_MAPF/example/assignment.cpp"
 },
 {
-  "directory": "/home/hadar/Project/libMultiRobotPlanning/build",
-  "command": "/usr/bin/c++   -I/home/hadar/Project/libMultiRobotPlanning/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/a_star.dir/example/a_star.cpp.o -c /home/hadar/Project/libMultiRobotPlanning/example/a_star.cpp",
-  "file": "/home/hadar/Project/libMultiRobotPlanning/example/a_star.cpp"
+  "directory": "/home/hadar/My_Project_MAPF/build",
+  "command": "/usr/bin/c++   -I/home/hadar/My_Project_MAPF/include   -Wall -Wextra   -std=c++14 -o CMakeFiles/a_star.dir/example/a_star.cpp.o -c /home/hadar/My_Project_MAPF/example/a_star.cpp",
+  "file": "/home/hadar/My_Project_MAPF/example/a_star.cpp"
 }
 ]

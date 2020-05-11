@@ -8,6 +8,6 @@ CMakeFiles/cbs_ta.dir/example/cbs_ta.cpp.o
  ../include/libMultiRobotPlanning/neighbor.hpp
  ../include/libMultiRobotPlanning/next_best_assignment.hpp
  ../include/libMultiRobotPlanning/planresult.hpp
- /home/hadar/Project/libMultiRobotPlanning/example/cbs_ta.cpp
- /home/hadar/Project/libMultiRobotPlanning/example/shortest_path_heuristic.hpp
- /home/hadar/Project/libMultiRobotPlanning/example/timer.hpp
+ /home/hadar/My_Project_MAPF/example/cbs_ta.cpp
+ /home/hadar/My_Project_MAPF/example/shortest_path_heuristic.hpp
+ /home/hadar/My_Project_MAPF/example/timer.hpp

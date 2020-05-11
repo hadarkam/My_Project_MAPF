@@ -6,5 +6,5 @@ CXX_FLAGS =  -Wall -Wextra   -std=c++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/hadar/Project/libMultiRobotPlanning/include 
+CXX_INCLUDES = -I/home/hadar/My_Project_MAPF/include 
 
