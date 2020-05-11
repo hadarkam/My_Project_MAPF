@@ -1,0 +1,7 @@
+solutions:
+  - cost: 1
+    assignment:
+      a0: t1
+  - cost: 2
+    assignment:
+      a0: t0
