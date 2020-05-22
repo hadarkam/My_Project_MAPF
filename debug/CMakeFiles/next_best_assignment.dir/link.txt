@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -g   CMakeFiles/next_best_assignment.dir/example/next_best_assignment.cpp.o  -o next_best_assignment /usr/lib/x86_64-linux-gnu/libboost_program_options.so -lyaml-cpp 

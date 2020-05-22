@@ -1,0 +1,16 @@
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/sipp.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/next_best_assignment.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/cbs_ta.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/ecbs_ta.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/ecbs.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/cbs.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/edit_cache.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/mapf_prioritized_sipp.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/clang-format.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/a_star_epsilon.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/rebuild_cache.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/clang-tidy.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/assignment.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/run-test.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/everything.dir
+/home/hadar/My_Project_MAPF/debug/CMakeFiles/a_star.dir

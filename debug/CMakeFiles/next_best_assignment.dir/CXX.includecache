@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/libMultiRobotPlanning/assignment.hpp
+boost/bimap.hpp
+-
+boost/graph/adjacency_list.hpp
+-
+boost/graph/successive_shortest_path_nonnegative_weights.hpp
+-
+
+../include/libMultiRobotPlanning/next_best_assignment.hpp
+queue
+-
+set
+-
+libMultiRobotPlanning/assignment.hpp
+-
+
+/home/hadar/My_Project_MAPF/example/next_best_assignment.cpp
+fstream
+-
+iostream
+-
+regex
+-
+boost/program_options.hpp
+-
+libMultiRobotPlanning/next_best_assignment.hpp
+-
+

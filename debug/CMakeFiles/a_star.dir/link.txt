@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -g   CMakeFiles/a_star.dir/example/a_star.cpp.o  -o a_star /usr/lib/x86_64-linux-gnu/libboost_program_options.so 

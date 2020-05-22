@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -g   CMakeFiles/ecbs.dir/example/ecbs.cpp.o  -o ecbs /usr/lib/x86_64-linux-gnu/libboost_program_options.so -lyaml-cpp 
