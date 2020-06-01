@@ -568,17 +568,79 @@ class Environment {
   int m_lowLevelExpanded;
 };
 
+void WriteSolutionToOutputFile(bool success,std::vector<libMultiRobotPlanning::PlanResult<State, Action, int>> solution
+,std::string outputFile, Timer timer,Environment* mapf){
+  if (success) {
+    std::cout << "Planning successful! " << std::endl;
+    int cost = 0;
+    int makespan = 0;
+    for (const auto& s : solution) {
+      cost += s.cost;
+      makespan = std::max<int>(makespan, s.cost);
+    }
+
+    std::ofstream out(outputFile);
+    out << "statistics:" << std::endl;
+    out << "  cost: " << cost << std::endl;
+    out << "  makespan: " << makespan << std::endl;
+    out << "  runtime: " << timer.elapsedSeconds() << std::endl;
+    out << "  highLevelExpanded: " << (*mapf).highLevelExpanded() << std::endl;
+    out << "  lowLevelExpanded: " << (*mapf).lowLevelExpanded() << std::endl;
+    out << "schedule:" << std::endl;
+    for (size_t a = 0; a < solution.size(); ++a) {
+      // std::cout << "Solution for: " << a << std::endl;
+      // for (size_t i = 0; i < solution[a].actions.size(); ++i) {
+      //   std::cout << solution[a].states[i].second << ": " <<
+      //   solution[a].states[i].first << "->" << solution[a].actions[i].first
+      //   << "(cost: " << solution[a].actions[i].second << ")" << std::endl;
+      // }
+      // std::cout << solution[a].states.back().second << ": " <<
+      // solution[a].states.back().first << std::endl;
+
+      out << "  agent" << a << ":" << std::endl;
+      for (const auto& state : solution[a].states) {
+        out << "    - x: " << state.first.x << std::endl
+            << "      y: " << state.first.y << std::endl
+            << "      t: " << state.second << std::endl;
+      }
+    }
+    
+  } else {
+    std::cout << "Planning NOT successful!" << std::endl;
+  }
+}
+
 int main(int argc, char* argv[]) {
   namespace po = boost::program_options;
   // Declare the supported options.
   po::options_description desc("Allowed options");
   std::string inputFile;
   std::string outputFile;
-  desc.add_options()("help", "produce help message")(
-      "input,i", po::value<std::string>(&inputFile)->required(),
-      "input file (YAML)")("output,o",
-                           po::value<std::string>(&outputFile)->required(),
-                           "output file (YAML)");
+  std::string secondOutputFile;
+  std::string approach;
+  int agentNumber;
+  int timeStep;
+  int goal_x;
+  int goal_y;
+
+  desc.add_options()
+      ("help", "produce help message")
+      ("input,i", po::value<std::string>(&inputFile)->required(),
+      "input file (YAML)")
+      ("output,o", po::value<std::string>(&outputFile)->required(),
+      "output file (YAML)")
+      ("secondOutput", po::value<std::string>(&secondOutputFile)->required(),
+      "second output file (YAML)")
+      ("approach", po::value<std::string>(&approach)->required(),
+      "naive or pruning approach")
+      ("agentNumber", po::value<int>(&agentNumber)->required(),
+      "agent with new goal location")
+      ("timeStep", po::value<int>(&timeStep)->required(),
+      "the time step in which the agent goal is changing")
+      ("x", po::value<int>(&goal_x)->required(),
+      "location x of the new goal")
+      ("y", po::value<int>(&goal_y)->required(),
+      "location y of the new goal");
 
   try {
     po::variables_map vm;
@@ -617,6 +679,24 @@ int main(int argc, char* argv[]) {
     goals.emplace_back(Location(goal[0].as<int>(), goal[1].as<int>()));
   }
 
+  //Flags checks:
+  //1. The goal is inside the map borders and is not an obstacles 
+  if(goal_x > dimx || goal_x < 0 || goal_y < 0|| goal_y >dimy){
+    std::cout << "The new goal location is out of map borders!" << std::endl;
+    return 0; 
+  }
+  for (const auto& elem: obstacles) {
+    if(elem.x == goal_x && elem.y == goal_y){
+      std::cout << "The new goal location is an obstacle!" << std::endl;
+      return 0;
+    }
+  }
+  //2. The agent number is valid
+  if(agentNumber > goals.size() || agentNumber < 0){
+    std::cout << "The agent number is not valid!" << std::endl;
+    return 0;
+  }
+
   Environment mapf(dimx, dimy, obstacles, goals);
   CBS<State, Action, int, Conflict, Constraints, Environment> cbs(mapf);
   std::vector<PlanResult<State, Action, int> > solution;
@@ -625,43 +705,75 @@ int main(int argc, char* argv[]) {
   bool success = cbs.search(startStates, solution);
   timer.stop();
 
-  if (success) {
-    std::cout << "Planning successful! " << std::endl;
-    int cost = 0;
-    int makespan = 0;
-    for (const auto& s : solution) {
-      cost += s.cost;
-      makespan = std::max<int>(makespan, s.cost);
-    }
 
-    std::ofstream out(outputFile);
-    out << "statistics:" << std::endl;
-    out << "  cost: " << cost << std::endl;
-    out << "  makespan: " << makespan << std::endl;
-    out << "  runtime: " << timer.elapsedSeconds() << std::endl;
-    out << "  highLevelExpanded: " << mapf.highLevelExpanded() << std::endl;
-    out << "  lowLevelExpanded: " << mapf.lowLevelExpanded() << std::endl;
-    out << "schedule:" << std::endl;
-    for (size_t a = 0; a < solution.size(); ++a) {
-      // std::cout << "Solution for: " << a << std::endl;
-      // for (size_t i = 0; i < solution[a].actions.size(); ++i) {
-      //   std::cout << solution[a].states[i].second << ": " <<
-      //   solution[a].states[i].first << "->" << solution[a].actions[i].first
-      //   << "(cost: " << solution[a].actions[i].second << ")" << std::endl;
-      // }
-      // std::cout << solution[a].states.back().second << ": " <<
-      // solution[a].states.back().first << std::endl;
+  //************second phase*************//
 
-      out << "  agent" << a << ":" << std::endl;
-      for (const auto& state : solution[a].states) {
-        out << "    - x: " << state.first.x << std::endl
-            << "      y: " << state.first.y << std::endl
-            << "      t: " << state.second << std::endl;
-      }
-    }
-  } else {
-    std::cout << "Planning NOT successful!" << std::endl;
+  //change the choosen agent goal location
+  goals[agentNumber].x= goal_x;
+  goals[agentNumber].y= goal_y;
+  //change all agents start location using the solution from old cbs
+  for (size_t a = 0; a < solution.size(); ++a) {
+    startStates[a].x = solution[a].states[timeStep].first.x;
+    startStates[a].y = solution[a].states[timeStep].first.y;
   }
+  //make new environment and run cbs:
+  Environment second_mapf(dimx, dimy, obstacles, goals);
+  CBS<State, Action, int, Conflict, Constraints, Environment> seconf_cbs(second_mapf);
+  std::vector<PlanResult<State, Action, int> > second_solution;
+
+  Timer second_timer;
+  bool second_success = seconf_cbs.search(startStates, second_solution);
+  second_timer.stop();
+
+  //************end second phase*************//
+
+  WriteSolutionToOutputFile(success,solution,outputFile,timer,&mapf);
+
+  // Write second ouput file with the new paths
+  WriteSolutionToOutputFile(second_success,second_solution,secondOutputFile,second_timer,&second_mapf);
+
+//*************old*************
+
+  // if (success) {
+  //   std::cout << "Planning successful! " << std::endl;
+  //   int cost = 0;
+  //   int makespan = 0;
+  //   for (const auto& s : solution) {
+  //     cost += s.cost;
+  //     makespan = std::max<int>(makespan, s.cost);
+  //   }
+
+  //   std::ofstream out(outputFile);
+  //   out << "statistics:" << std::endl;
+  //   out << "  cost: " << cost << std::endl;
+  //   out << "  makespan: " << makespan << std::endl;
+  //   out << "  runtime: " << timer.elapsedSeconds() << std::endl;
+  //   out << "  highLevelExpanded: " << mapf.highLevelExpanded() << std::endl;
+  //   out << "  lowLevelExpanded: " << mapf.lowLevelExpanded() << std::endl;
+  //   out << "schedule:" << std::endl;
+  //   for (size_t a = 0; a < solution.size(); ++a) {
+  //     // std::cout << "Solution for: " << a << std::endl;
+  //     // for (size_t i = 0; i < solution[a].actions.size(); ++i) {
+  //     //   std::cout << solution[a].states[i].second << ": " <<
+  //     //   solution[a].states[i].first << "->" << solution[a].actions[i].first
+  //     //   << "(cost: " << solution[a].actions[i].second << ")" << std::endl;
+  //     // }
+  //     // std::cout << solution[a].states.back().second << ": " <<
+  //     // solution[a].states.back().first << std::endl;
+
+  //     out << "  agent" << a << ":" << std::endl;
+  //     for (const auto& state : solution[a].states) {
+  //       out << "    - x: " << state.first.x << std::endl
+  //           << "      y: " << state.first.y << std::endl
+  //           << "      t: " << state.second << std::endl;
+  //     }
+  //   }
+    
+  // } else {
+  //   std::cout << "Planning NOT successful!" << std::endl;
+  // }
+
+//*************old*************
 
   return 0;
 }
