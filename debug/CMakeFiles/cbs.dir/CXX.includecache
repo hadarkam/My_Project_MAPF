@@ -26,10 +26,24 @@ map
 a_star.hpp
 ../include/libMultiRobotPlanning/a_star.hpp
 
+../include/libMultiRobotPlanning/cbs_tree.hpp
+map
+-
+a_star.hpp
+../include/libMultiRobotPlanning/a_star.hpp
+
 ../include/libMultiRobotPlanning/neighbor.hpp
 
 ../include/libMultiRobotPlanning/planresult.hpp
 vector
+-
+
+../include/libMultiRobotPlanning/store_tree_cbs.hpp
+map
+-
+a_star.hpp
+../include/libMultiRobotPlanning/a_star.hpp
+libMultiRobotPlanning/cbs_tree.hpp
 -
 
 /home/hadar/My_Project_MAPF/example/cbs.cpp
@@ -43,10 +57,14 @@ boost/program_options.hpp
 -
 yaml-cpp/yaml.h
 -
+libMultiRobotPlanning/cbs_tree.hpp
+-
 libMultiRobotPlanning/cbs.hpp
 -
 timer.hpp
 /home/hadar/My_Project_MAPF/example/timer.hpp
+libMultiRobotPlanning/store_tree_cbs.hpp
+-
 
 /home/hadar/My_Project_MAPF/example/timer.hpp
 chrono

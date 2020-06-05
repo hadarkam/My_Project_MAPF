@@ -6,10 +6,15 @@
 
 #include <yaml-cpp/yaml.h>
 
+#include <libMultiRobotPlanning/cbs_tree.hpp>
+
 #include <libMultiRobotPlanning/cbs.hpp>
 #include "timer.hpp"
+#include <libMultiRobotPlanning/store_tree_cbs.hpp>
 
 using libMultiRobotPlanning::CBS;
+using libMultiRobotPlanning::TREE_CBS;
+using libMultiRobotPlanning::btree;
 using libMultiRobotPlanning::Neighbor;
 using libMultiRobotPlanning::PlanResult;
 
@@ -697,6 +702,8 @@ int main(int argc, char* argv[]) {
     return 0;
   }
 
+  //************first phase*************// - not saving tree
+  // First run of CBS
   Environment mapf(dimx, dimy, obstacles, goals);
   CBS<State, Action, int, Conflict, Constraints, Environment> cbs(mapf);
   std::vector<PlanResult<State, Action, int> > solution;
@@ -705,6 +712,23 @@ int main(int argc, char* argv[]) {
   bool success = cbs.search(startStates, solution);
   timer.stop();
 
+  WriteSolutionToOutputFile(success,solution,outputFile,timer,&mapf);
+  //************first phase*************//
+
+  //************first phase*************// - saving CBS CT-tree
+  // First run of CBS
+  Environment tree_mapf(dimx, dimy, obstacles, goals);
+  TREE_CBS<State, Action, int, Conflict, Constraints, Environment> tree_cbs(tree_mapf);
+  std::vector<PlanResult<State, Action, int> > tree_solution;
+
+  btree<State,Action,int, Conflict, Constraints, Environment> *ct_tree = new btree<State,Action,int, Conflict, Constraints, Environment>();
+
+  Timer tree_timer;
+  bool tree_success = tree_cbs.search(startStates, tree_solution, ct_tree);
+  tree_timer.stop();
+
+  WriteSolutionToOutputFile(tree_success,tree_solution,outputFile,tree_timer,&tree_mapf);
+  //************first phase*************//
 
   //************second phase*************//
 
@@ -716,23 +740,28 @@ int main(int argc, char* argv[]) {
     startStates[a].x = solution[a].states[timeStep].first.x;
     startStates[a].y = solution[a].states[timeStep].first.y;
   }
-  //make new environment and run cbs:
-  Environment second_mapf(dimx, dimy, obstacles, goals);
-  CBS<State, Action, int, Conflict, Constraints, Environment> seconf_cbs(second_mapf);
-  std::vector<PlanResult<State, Action, int> > second_solution;
 
-  Timer second_timer;
-  bool second_success = seconf_cbs.search(startStates, second_solution);
-  second_timer.stop();
+  if(approach == "baseline"){
+    //make new environment and run cbs:
+    Environment second_mapf(dimx, dimy, obstacles, goals);
+    CBS<State, Action, int, Conflict, Constraints, Environment> second_cbs(second_mapf);
+    std::vector<PlanResult<State, Action, int> > second_solution;
+
+    Timer second_timer;
+    bool second_success = second_cbs.search(startStates, second_solution);
+    second_timer.stop();
+
+      // Write second ouput file with the new paths
+    WriteSolutionToOutputFile(second_success,second_solution,secondOutputFile,second_timer,&second_mapf);
+
+  }else{ // approach == "pruning"
+
+  }
+ 
 
   //************end second phase*************//
 
-  WriteSolutionToOutputFile(success,solution,outputFile,timer,&mapf);
-
-  // Write second ouput file with the new paths
-  WriteSolutionToOutputFile(second_success,second_solution,secondOutputFile,second_timer,&second_mapf);
-
-//*************old*************
+  //*************old*************
 
   // if (success) {
   //   std::cout << "Planning successful! " << std::endl;

@@ -109,9 +109,9 @@ class CBS {
     // std::priority_queue<HighLevelNode> open;
     typename boost::heap::d_ary_heap<HighLevelNode, boost::heap::arity<2>,
                                      boost::heap::mutable_<true> >
-        open;
+        open; //note: implemented as max heap data structer
 
-    auto handle = open.push(start);
+    auto handle = open.push(start); //push return value is a pointer to HighLevelNode
     (*handle).handle = handle;
 
     solution.clear();

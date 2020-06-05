@@ -4,7 +4,9 @@
 CMakeFiles/cbs.dir/example/cbs.cpp.o
  ../include/libMultiRobotPlanning/a_star.hpp
  ../include/libMultiRobotPlanning/cbs.hpp
+ ../include/libMultiRobotPlanning/cbs_tree.hpp
  ../include/libMultiRobotPlanning/neighbor.hpp
  ../include/libMultiRobotPlanning/planresult.hpp
+ ../include/libMultiRobotPlanning/store_tree_cbs.hpp
  /home/hadar/My_Project_MAPF/example/cbs.cpp
  /home/hadar/My_Project_MAPF/example/timer.hpp
