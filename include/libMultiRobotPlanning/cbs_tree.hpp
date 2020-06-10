@@ -4,21 +4,32 @@
 
 #include "a_star.hpp"
 namespace libMultiRobotPlanning {
-    template <typename State, typename Action, typename Cost, typename Conflict, typename Constraints>
+    template <class T> 
+    struct my_less {
+        bool operator() (const T& x, const T& y) const {return *x<*y;}
+    };
+    template <typename HighLevelNode, typename Conflict>
     struct treeNode{
         int id;
-        std::vector<PlanResult<State, Action, Cost> > solution;
-        std::vector<Constraints> constraints;
+        HighLevelNode* highLevelNodeTree;
         Conflict conflict;
+        typename boost::heap::d_ary_heap< treeNode<HighLevelNode, Conflict>*, boost::heap::arity<2>, 
+                                     boost::heap::mutable_<true>,boost::heap::compare<my_less<treeNode<HighLevelNode, Conflict>*>> >::handle_type
+        handle;
         treeNode* parent;
         treeNode* child_left;
         treeNode* child_right;
+        bool operator<(const treeNode& n) const {
+            // if (cost != n.cost)
+            return *(highLevelNodeTree) < *(n.highLevelNodeTree);
+            // return id > n.id;
+        }
+
     };
 
 
 
-    template <typename State, typename Action, typename Cost, typename Conflict,
-          typename Constraints, typename Environment>
+    template <typename HighLevelNode, typename Conflict>
     class btree{
         public:
             btree(){
@@ -28,14 +39,14 @@ namespace libMultiRobotPlanning {
                 destroy_tree();
             }
 
-            void insert(int *id, std::vector<PlanResult<State, Action, Cost> > *solution, std::vector<Constraints> *constraints, treeNode<State, Action, Cost, Conflict, Constraints> *node ){
-                insertPriv(id, solution, constraints, node);
+            treeNode<HighLevelNode, Conflict>* insert(int *id, HighLevelNode* highLevelNodeTree, treeNode<HighLevelNode, Conflict> *node ){
+                return insertPriv(id, highLevelNodeTree, node);
             }
-            treeNode<State, Action, Cost, Conflict, Constraints>* insertRoot(int *id, std::vector<PlanResult<State, Action, Cost> > *solution, std::vector<Constraints> *constraints){
-                return insertRootPriv(id, solution, constraints);
+            treeNode<HighLevelNode, Conflict>* insertRoot(int *id, HighLevelNode* highLevelNodeTree){
+                return insertRootPriv(id, highLevelNodeTree);
             }
 
-            treeNode<State, Action, Cost, Conflict, Constraints>* search(int *key){
+            treeNode<HighLevelNode, Conflict>* search(int *key){
                 return searchPriv(key);
             }
             void destroy_tree(){
@@ -44,7 +55,7 @@ namespace libMultiRobotPlanning {
             }
 
         private:
-            void destroy_tree(treeNode<State, Action, Cost, Conflict, Constraints>* leaf){
+            void destroy_tree(treeNode<HighLevelNode, Conflict>* leaf){
                 if(leaf!=NULL)
                 {
                     destroy_tree(leaf->child_left);
@@ -53,55 +64,55 @@ namespace libMultiRobotPlanning {
                 }
             }
 
-            treeNode<State, Action, Cost, Conflict, Constraints>* insertRootPriv(int *id, std::vector<PlanResult<State, Action, Cost> > *solution, std::vector<Constraints> *constraints){
+            treeNode<HighLevelNode, Conflict>* insertRootPriv(int *id, HighLevelNode* highLevelNodeTree){
                 if(root == NULL){
-                    root = new treeNode<State, Action, Cost, Conflict, Constraints>();
+                    root = new treeNode<HighLevelNode, Conflict>();
                     root->id = *id;
-                    root->solution = *solution;
-                    root->constraints = *constraints;
+                    root->highLevelNodeTree = highLevelNodeTree;
                     root->conflict = Conflict();
                     root->parent = NULL;
                     root->child_left = NULL;
                     root->child_right = NULL;
                 }
-                tree_leafs.push_back(root);
+                //tree_leafs.push_back(root);
                 return root;
             }
-            void insertPriv(int *id, std::vector<PlanResult<State, Action, Cost> > *solution, std::vector<Constraints> *constraints, treeNode<State, Action, Cost, Conflict, Constraints>* leaf){
+            treeNode<HighLevelNode, Conflict>* insertPriv(int *id, HighLevelNode* highLevelNodeTree, treeNode<HighLevelNode, Conflict>* leaf){
                 if(leaf->child_left == NULL){
-                    leaf->child_left = new treeNode<State, Action, Cost, Conflict, Constraints>();
+                    leaf->child_left = new treeNode<HighLevelNode, Conflict>();
                     leaf->child_left->id =*id;
-                    leaf->child_left->solution = *solution;
-                    leaf->child_left->constraints = *constraints;
+                    leaf->child_left->highLevelNodeTree = highLevelNodeTree;
                     leaf->child_left->conflict = Conflict();
                     leaf->child_left->parent = leaf;
                     leaf->child_left->child_left = NULL;
                     leaf->child_left->child_right = NULL;
                     //remove leaf from list
-                    typename std::vector<treeNode<State, Action, Cost, Conflict, Constraints>*>::iterator it = std::find(tree_leafs.begin(), tree_leafs.end(),leaf);
-                    if (it != tree_leafs.end()){
-                        tree_leafs.erase(it);
-                    }
+                    // typename std::vector<treeNode<HighLevelNodeTree>*>::iterator it = std::find(tree_leafs.begin(), tree_leafs.end(),leaf);
+                    // if (it != tree_leafs.end()){
+                    //     tree_leafs.erase(it);
+                    // }
                     //add leaf to list
-                    tree_leafs.push_back(leaf->child_left);
+                    //tree_leafs.push_back(leaf->child_left);
+                    
+                    return leaf->child_left;
                 }else{
-                    leaf->child_right = new treeNode<State, Action, Cost, Conflict, Constraints>();
+                    leaf->child_right = new treeNode<HighLevelNode, Conflict>();
                     leaf->child_right->id =*id;
-                    leaf->child_right->solution = *solution;
-                    leaf->child_right->constraints = *constraints;
+                    leaf->child_right->highLevelNodeTree = highLevelNodeTree;
                     leaf->child_right->conflict =  Conflict();
                     leaf->child_right->parent = leaf;
                     leaf->child_right->child_left = NULL;
                     leaf->child_right->child_right = NULL;
                     //add leaf to list
-                    tree_leafs.push_back(leaf->child_right);
+                    //tree_leafs.push_back(leaf->child_right);
+
+                    return leaf->child_right;
                 }
-                return;
             }
 
-            treeNode<State, Action, Cost, Conflict, Constraints>* searchPriv(int *key){
+            treeNode<HighLevelNode, Conflict>* searchPriv(int *key){
                 //search only in leafs! not all tree (because only them can be in open)
-                for(typename std::vector<treeNode<State, Action, Cost, Conflict, Constraints>*>::iterator it = tree_leafs.begin(); it != tree_leafs.end(); ++it) {
+                for(typename std::vector<treeNode<HighLevelNode, Conflict>*>::iterator it = tree_leafs.begin(); it != tree_leafs.end(); ++it) {
                     if((*(it))->id == *key){
                         return *it;
                     }
@@ -109,8 +120,8 @@ namespace libMultiRobotPlanning {
                 return NULL;
             }
             
-            std::vector<treeNode<State, Action, Cost, Conflict, Constraints>*> tree_leafs;
-            treeNode<State, Action, Cost, Conflict, Constraints>* root;
+            std::vector<treeNode<HighLevelNode,Conflict>*> tree_leafs;
+            treeNode<HighLevelNode, Conflict>* root;
 
     };
 }  // namespace libMultiRobotPlanning

@@ -702,7 +702,9 @@ int main(int argc, char* argv[]) {
     return 0;
   }
 
-  //************first phase*************// - not saving tree
+  // todo: compare run time betwwen to diffrent "first phase"
+
+  //************first phase*************// - without saving a tree (regular run)
   // First run of CBS
   Environment mapf(dimx, dimy, obstacles, goals);
   CBS<State, Action, int, Conflict, Constraints, Environment> cbs(mapf);
@@ -713,24 +715,24 @@ int main(int argc, char* argv[]) {
   timer.stop();
 
   WriteSolutionToOutputFile(success,solution,outputFile,timer,&mapf);
-  //************first phase*************//
+  //************first phase*************// - without saving a tree (regular run)
 
-  //************first phase*************// - saving CBS CT-tree
+  //************first phase - build CT eith CBS*************// 
   // First run of CBS
   Environment tree_mapf(dimx, dimy, obstacles, goals);
   TREE_CBS<State, Action, int, Conflict, Constraints, Environment> tree_cbs(tree_mapf);
   std::vector<PlanResult<State, Action, int> > tree_solution;
 
-  btree<State,Action,int, Conflict, Constraints, Environment> *ct_tree = new btree<State,Action,int, Conflict, Constraints, Environment>();
+  btree< TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode, Conflict> *ct_tree = new btree< TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode, Conflict>();
 
   Timer tree_timer;
   bool tree_success = tree_cbs.search(startStates, tree_solution, ct_tree);
   tree_timer.stop();
 
   WriteSolutionToOutputFile(tree_success,tree_solution,outputFile,tree_timer,&tree_mapf);
-  //************first phase*************//
+  //************first phase - build CT eith CBS*************// 
 
-  //************second phase*************//
+  //************second phase- find new pathes after "the agent" goal changed*************//
 
   //change the choosen agent goal location
   goals[agentNumber].x= goal_x;
@@ -756,10 +758,15 @@ int main(int argc, char* argv[]) {
 
   }else{ // approach == "pruning"
 
-  }
- 
+  //prun OCT
 
-  //************end second phase*************//
+  //create Open list from NCT 
+
+  // run CBS with the newly created Open list
+  }
+  //************second phase- find new pathes after "the agent" goal changed*************//
+  
+  
 
   //*************old*************
 

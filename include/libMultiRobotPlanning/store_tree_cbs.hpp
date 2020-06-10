@@ -81,109 +81,7 @@ template <typename State, typename Action, typename Cost, typename Conflict,
           typename Constraints, typename Environment>
 class TREE_CBS {
  public:
-  TREE_CBS(Environment& environment) : m_env(environment) {}
 
-  bool search(const std::vector<State>& initialStates, std::vector<PlanResult<State, Action, Cost> >& solution, btree<State,Action,Cost, Conflict, Constraints, Environment> *cbs_tree) {
-    HighLevelNode start;
-    start.solution.resize(initialStates.size());
-    start.constraints.resize(initialStates.size());
-    start.cost = 0;
-    start.id = 0;
-
-    for (size_t i = 0; i < initialStates.size(); ++i) {
-      // if (   i < solution.size()
-      //     && solution[i].states.size() > 1) {
-      //   start.solution[i] = solution[i];
-      //   std::cout << "use existing solution for agent: " << i << std::endl;
-      // } else {
-      LowLevelEnvironment llenv(m_env, i, start.constraints[i]);
-      LowLevelSearch_t lowLevel(llenv);
-      bool success = lowLevel.search(initialStates[i], start.solution[i]);
-      if (!success) {
-        return false;
-      }
-      // }
-      start.cost += start.solution[i].cost;
-    }
-
-    // std::priority_queue<HighLevelNode> open;
-    typename boost::heap::d_ary_heap<HighLevelNode, boost::heap::arity<2>,
-                                     boost::heap::mutable_<true> >
-        open; //note: implemented as max heap data structer
-
-    auto handle = open.push(start); //push return value is a pointer to HighLevelNode
-    (*handle).handle = handle;
-    
-    //initialize binary tree and insert root (=start)
-    //btree<State,Action,Cost, Conflict, Constraints, Environment> *cbs_tree = new btree<State,Action,Cost, Conflict, Constraints, Environment>();
-    //root conflict is null until we find the first conflict (we will split with)
-    treeNode<State, Action, Cost, Conflict, Constraints>* tree_root = cbs_tree->insertRoot(&(start.id), &(start.solution), &(start.constraints));
-
-    solution.clear();
-    int id = 1;
-    while (!open.empty()) {
-      HighLevelNode P = open.top();
-      m_env.onExpandHighLevelNode(P.cost);
-      // std::cout << "expand: " << P << std::endl;
-
-      open.pop();
-
-      //find the relevant node in tree
-      treeNode<State, Action, Cost, Conflict, Constraints>* tree_node = cbs_tree->search(&(P.id));
-
-      Conflict conflict;
-      if (!m_env.getFirstConflict(P.solution, conflict)) {
-        std::cout << "done; cost: " << P.cost << std::endl;
-        solution = P.solution;
-        return true;
-      }
-      //insert conflict to tree_node
-      tree_node->conflict = conflict;
-
-      // create additional nodes to resolve conflict
-      // std::cout << "Found conflict: " << conflict << std::endl;
-      // std::cout << "Found conflict at t=" << conflict.time << " type: " <<
-      // conflict.type << std::endl;
-
-      std::map<size_t, Constraints> constraints;
-      m_env.createConstraintsFromConflict(conflict, constraints);
-      for (const auto& c : constraints) {
-        // std::cout << "Add HL node for " << c.first << std::endl;
-        size_t i = c.first;
-        // std::cout << "create child with id " << id << std::endl;
-        HighLevelNode newNode = P;
-        newNode.id = id;
-        // (optional) check that this constraint was not included already
-        // std::cout << newNode.constraints[i] << std::endl;
-        // std::cout << c.second << std::endl;
-        assert(!newNode.constraints[i].overlap(c.second));
-
-        newNode.constraints[i].add(c.second);
-
-        newNode.cost -= newNode.solution[i].cost;
-
-        LowLevelEnvironment llenv(m_env, i, newNode.constraints[i]);
-        LowLevelSearch_t lowLevel(llenv);
-        bool success = lowLevel.search(initialStates[i], newNode.solution[i]);
-
-        newNode.cost += newNode.solution[i].cost;
-
-        if (success) {
-          // std::cout << "  success. cost: " << newNode.cost << std::endl;
-          auto handle = open.push(newNode);
-          (*handle).handle = handle;
-        }
-
-        //insert newNode to tree
-        cbs_tree->insert(&(newNode.id), &(newNode.solution), &(newNode.constraints), tree_node);
-        ++id;
-      }
-    }
-
-    return false;
-  }
-
- private:
   struct HighLevelNode {
     std::vector<PlanResult<State, Action, Cost> > solution;
     std::vector<Constraints> constraints;
@@ -192,15 +90,14 @@ class TREE_CBS {
 
     int id;
 
-    typename boost::heap::d_ary_heap<HighLevelNode, boost::heap::arity<2>,
-                                     boost::heap::mutable_<true> >::handle_type
-        handle;
-
     bool operator<(const HighLevelNode& n) const {
       // if (cost != n.cost)
       return cost > n.cost;
       // return id > n.id;
     }
+    // HighLevelNode(const HighLevelNode &t): solution(t.solution), constraints(t.constraints) {
+    // } 
+    // HighLevelNode(){}
 
     friend std::ostream& operator<<(std::ostream& os, const HighLevelNode& c) {
       os << "id: " << c.id << " cost: " << c.cost << std::endl;
@@ -218,6 +115,122 @@ class TREE_CBS {
     }
   };
 
+  TREE_CBS(Environment& environment) : m_env(environment) {}
+
+  bool search(const std::vector<State>& initialStates, std::vector<PlanResult<State, Action, Cost> >& solution, btree< HighLevelNode, Conflict> *cbs_tree) {
+    HighLevelNode *start = new HighLevelNode();
+    start->solution.resize(initialStates.size());
+    start->constraints.resize(initialStates.size());
+    start->cost = 0;
+    start->id = 0;
+
+    for (size_t i = 0; i < initialStates.size(); ++i) {
+      // if (   i < solution.size()
+      //     && solution[i].states.size() > 1) {
+      //   start.solution[i] = solution[i];
+      //   std::cout << "use existing solution for agent: " << i << std::endl;
+      // } else {
+      LowLevelEnvironment llenv(m_env, i, start->constraints[i]);
+      LowLevelSearch_t lowLevel(llenv);
+      bool success = lowLevel.search(initialStates[i], start->solution[i]);
+      if (!success) {
+        return false;
+      }
+      // }
+      start->cost += start->solution[i].cost;
+    }
+
+    // std::priority_queue<HighLevelNode> open;
+    typename boost::heap::d_ary_heap<treeNode< HighLevelNode, Conflict>*, boost::heap::arity<2>,
+                                     boost::heap::mutable_<true>,boost::heap::compare<my_less<treeNode<HighLevelNode, Conflict>*>> >
+        open; //note: implemented as max heap data structer
+    
+    //initialize binary tree and insert root (=start)
+    //btree<State,Action,Cost, Conflict, Constraints, Environment> *cbs_tree = new btree<State,Action,Cost, Conflict, Constraints, Environment>();
+    //root conflict is null until we find the first conflict (we will split with)
+    treeNode<HighLevelNode, Conflict>* tree_root = cbs_tree->insertRoot(&(start->id), start);
+
+    auto handle = open.push(tree_root); //push return value is a pointer to HighLevelNode
+    (*handle)->handle = handle;
+
+    solution.clear();
+    int id = 1;
+    while (!open.empty()) {
+      treeNode<HighLevelNode, Conflict>* P = open.top();
+      m_env.onExpandHighLevelNode(P->highLevelNodeTree->cost);
+      // std::cout << "expand: " << P << std::endl;
+
+      open.pop();
+
+      //find the relevant node in tree
+      //treeNode<State, Action, Cost, Conflict, Constraints>* tree_node = cbs_tree->search(&(P.id));
+
+      Conflict conflict;
+      if (!m_env.getFirstConflict(P->highLevelNodeTree->solution, conflict)) {
+        std::cout << "done; cost: " << P->highLevelNodeTree->cost << std::endl;
+        solution = P->highLevelNodeTree->solution;
+        return true;
+      }
+      //insert conflict to tree_node
+      P->conflict = conflict;
+
+      // create additional nodes to resolve conflict
+      // std::cout << "Found conflict: " << conflict << std::endl;
+      // std::cout << "Found conflict at t=" << conflict.time << " type: " <<
+      // conflict.type << std::endl;
+
+      std::map<size_t, Constraints> constraints;
+      m_env.createConstraintsFromConflict(conflict, constraints);
+      for (const auto& c : constraints) {
+        // std::cout << "Add HL node for " << c.first << std::endl;
+        size_t i = c.first;
+        // std::cout << "create child with id " << id << std::endl;
+
+        HighLevelNode *newNode = new HighLevelNode();
+        newNode->constraints = P->highLevelNodeTree->constraints;
+        newNode->cost = P->highLevelNodeTree->cost;
+        newNode->solution = P->highLevelNodeTree->solution;
+        //*newNode = *(P.highLevelNodeTree);
+        newNode->id = id;
+
+        //(optional) check that this constraint was not included already
+        // std::cout << newNode.constraints[i] << std::endl;
+        // std::cout << c.second << std::endl;
+        assert(!newNode->constraints[i].overlap(c.second));
+
+        newNode->constraints[i].add(c.second);
+
+        newNode->cost -= newNode->solution[i].cost;
+
+        LowLevelEnvironment llenv(m_env, i, newNode->constraints[i]);
+        LowLevelSearch_t lowLevel(llenv);
+        bool success = lowLevel.search(initialStates[i], newNode->solution[i]);
+
+        newNode->cost += newNode->solution[i].cost;
+
+
+
+        //insert newNode to tree
+        treeNode<HighLevelNode, Conflict> *new_tree_node = cbs_tree->insert(&(newNode->id), newNode, P);
+
+        if (success) {
+          // std::cout << "  success. cost: " << newNode.cost << std::endl;
+          auto handle = open.push(new_tree_node);
+          (*handle)->handle = handle;
+        }
+        ++id;
+      }
+    }
+
+    return false;
+  }
+
+  
+
+
+   
+
+  private:
   struct LowLevelEnvironment {
     LowLevelEnvironment(Environment& env, size_t agentIdx,
                         const Constraints& constraints)
