@@ -623,7 +623,7 @@ int main(int argc, char* argv[]) {
   std::string outputFile;
   std::string secondOutputFile;
   std::string approach;
-  int agentNumber;
+  std::size_t agentNumber;
   int timeStep;
   int goal_x;
   int goal_y;
@@ -638,7 +638,7 @@ int main(int argc, char* argv[]) {
       "second output file (YAML)")
       ("approach", po::value<std::string>(&approach)->required(),
       "naive or pruning approach")
-      ("agentNumber", po::value<int>(&agentNumber)->required(),
+      ("agentNumber", po::value<std::size_t>(&agentNumber)->required(),
       "agent with new goal location")
       ("timeStep", po::value<int>(&timeStep)->required(),
       "the time step in which the agent goal is changing")
@@ -697,7 +697,7 @@ int main(int argc, char* argv[]) {
     }
   }
   //2. The agent number is valid
-  if(agentNumber > goals.size() || agentNumber < 0){
+  if(agentNumber > goals.size()){
     std::cout << "The agent number is not valid!" << std::endl;
     return 0;
   }
@@ -810,6 +810,6 @@ int main(int argc, char* argv[]) {
   // }
 
 //*************old*************
-
+  delete ct_tree;
   return 0;
 }

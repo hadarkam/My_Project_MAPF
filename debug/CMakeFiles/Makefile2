@@ -492,9 +492,9 @@ clean: CMakeFiles/run-test.dir/clean
 # Target rules for target CMakeFiles/everything.dir
 
 # All Build rule for target.
-CMakeFiles/everything.dir/all: CMakeFiles/run-test.dir/all
 CMakeFiles/everything.dir/all: CMakeFiles/clang-format.dir/all
 CMakeFiles/everything.dir/all: CMakeFiles/clang-tidy.dir/all
+CMakeFiles/everything.dir/all: CMakeFiles/run-test.dir/all
 	$(MAKE) -f CMakeFiles/everything.dir/build.make CMakeFiles/everything.dir/depend
 	$(MAKE) -f CMakeFiles/everything.dir/build.make CMakeFiles/everything.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hadar/My_Project_MAPF/debug/CMakeFiles --progress-num= "Built target everything"
