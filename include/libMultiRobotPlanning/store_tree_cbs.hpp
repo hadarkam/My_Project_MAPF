@@ -117,44 +117,72 @@ class TREE_CBS {
 
   TREE_CBS(Environment& environment) : m_env(environment) {}
 
-  bool search(const std::vector<State>& initialStates, std::vector<PlanResult<State, Action, Cost> >& solution, btree< HighLevelNode, Conflict> *cbs_tree) {
+  bool search(const std::vector<State>& initialStates, std::vector<PlanResult<State, Action, Cost> >& solution, btree< HighLevelNode, Conflict> *cbs_tree,
+  std::vector<treeNode<HighLevelNode,Conflict>*>& treeNodeVector, int id, int agentNumber) {
     HighLevelNode *start = new HighLevelNode();
-    start->solution.resize(initialStates.size());
-    start->constraints.resize(initialStates.size());
-    start->cost = 0;
-    start->id = 0;
 
-    for (size_t i = 0; i < initialStates.size(); ++i) {
-      // if (   i < solution.size()
-      //     && solution[i].states.size() > 1) {
-      //   start.solution[i] = solution[i];
-      //   std::cout << "use existing solution for agent: " << i << std::endl;
-      // } else {
-      LowLevelEnvironment llenv(m_env, i, start->constraints[i]);
-      LowLevelSearch_t lowLevel(llenv);
-      bool success = lowLevel.search(initialStates[i], start->solution[i]);
-      if (!success) {
-        return false;
+    if (treeNodeVector.empty()){
+      //regular (no initial states)
+      start->solution.resize(initialStates.size());
+      start->constraints.resize(initialStates.size());
+      start->cost = 0;
+      start->id = 0;
+
+      for (size_t i = 0; i < initialStates.size(); ++i) {
+        // if (   i < solution.size()
+        //     && solution[i].states.size() > 1) {
+        //   start.solution[i] = solution[i];
+        //   std::cout << "use existing solution for agent: " << i << std::endl;
+        // } else {
+        LowLevelEnvironment llenv(m_env, i, start->constraints[i]);
+        LowLevelSearch_t lowLevel(llenv);
+        bool success = lowLevel.search(initialStates[i], start->solution[i]);
+        if (!success) {
+          return false;
+        }
+        // }
+        start->cost += start->solution[i].cost;
       }
-      // }
-      start->cost += start->solution[i].cost;
     }
 
     // std::priority_queue<HighLevelNode> open;
     typename boost::heap::d_ary_heap<treeNode< HighLevelNode, Conflict>*, boost::heap::arity<2>,
-                                     boost::heap::mutable_<true>,boost::heap::compare<my_less<treeNode<HighLevelNode, Conflict>*>> >
+                                    boost::heap::mutable_<true>,boost::heap::compare<my_less<treeNode<HighLevelNode, Conflict>*>> >
         open; //note: implemented as max heap data structer
-    
-    //initialize binary tree and insert root (=start)
-    //btree<State,Action,Cost, Conflict, Constraints, Environment> *cbs_tree = new btree<State,Action,Cost, Conflict, Constraints, Environment>();
-    //root conflict is null until we find the first conflict (we will split with)
-    treeNode<HighLevelNode, Conflict>* tree_root = cbs_tree->insertRoot(&(start->id), start);
 
-    auto handle = open.push(tree_root); //push return value is a pointer to HighLevelNode
-    (*handle)->handle = handle;
+    treeNode<HighLevelNode, Conflict>* tree_root;
+    if (cbs_tree->GetRoot() == NULL){
+      //initialize binary tree and insert root (=start)
+      //btree<State,Action,Cost, Conflict, Constraints, Environment> *cbs_tree = new btree<State,Action,Cost, Conflict, Constraints, Environment>();
+      //root conflict is null until we find the first conflict (we will split with)
+      tree_root = cbs_tree->insertRoot(&(start->id), start);
+    }
+    
+
+    if (treeNodeVector.empty()){
+    
+      //This is the second phase
+      auto handle = open.push(tree_root); 
+      (*handle)->handle = handle;
+    }else{
+      //This is the second phase
+      for (auto const& treeNode : treeNodeVector){
+        //initialize "the" agent path (with the new goal location)
+        LowLevelEnvironment llenv(m_env, agentNumber, treeNode->highLevelNodeTree->constraints[agentNumber]);
+        LowLevelSearch_t lowLevel(llenv);
+        bool success = lowLevel.search(initialStates[agentNumber], treeNode->highLevelNodeTree->solution[agentNumber]);
+        treeNode->highLevelNodeTree->cost += treeNode->highLevelNodeTree->solution[agentNumber].cost;
+        if (!success) {
+          return false;
+        }
+        // push node to open list
+        auto handle = open.push(treeNode); 
+        (*handle)->handle = handle;
+      }
+    }
 
     solution.clear();
-    int id = 1;
+    //int id = 1;
     while (!open.empty()) {
       treeNode<HighLevelNode, Conflict>* P = open.top();
       m_env.onExpandHighLevelNode(P->highLevelNodeTree->cost);
