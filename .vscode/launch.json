@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/debug/cbs",
-            "args": ["-i", "${workspaceFolder}/benchmark/32x32_obst204/map_32by32_obst204_agents20_ex2.yaml", "--outputFileBase", "/home/hadar/My_Project_MAPF/debug/outputFileBase.yaml", 
+            "args": ["-i", "${workspaceFolder}/benchmark/32x32_obst204/map_32by32_obst204_agents10_ex31.yaml", "--outputFileBase", "/home/hadar/My_Project_MAPF/debug/outputFileBase.yaml", 
                 "--outputFileNew","/home/hadar/My_Project_MAPF/debug/outputFileNew.yaml",
                 "--secondOutputFileBase","/home/hadar/My_Project_MAPF/debug/secondOutputFileBase.yaml",
                 "--secondOutputFileNew","/home/hadar/My_Project_MAPF/debug/secondOutputFileNew.yaml",

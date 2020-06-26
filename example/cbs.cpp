@@ -785,28 +785,41 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  if(approach == "baseline" ){
+  //if(approach == "baseline" ){
     //make new environment and run cbs:
+    Timer second_timer;
     Environment second_mapf(dimx, dimy, obstacles, goals);
     CBS<State, Action, int, Conflict, Constraints, Environment> second_cbs(second_mapf);
     std::vector<PlanResult<State, Action, int> > second_solution;
 
-    Timer second_timer;
+    
     bool second_success = second_cbs.search(startStates, second_solution);
     second_timer.stop();
+    std::cout << second_timer.elapsedSeconds() <<std::endl;
 
       // Write second ouput file with the new paths
     WriteSolutionToOutputFile(second_success,second_solution,secondOutputFileBase,second_timer,&second_mapf);
 
-  }else{ // approach == "pruning"
+  //}else{ // approach == "pruning"
 
-        //make new environment and run cbs:  
+    Timer second_tree_timer;
+    //make new environment and run cbs:  
     Environment second_tree_mapf(dimx, dimy, obstacles, goals);
     TREE_CBS<State, Action, int, Conflict, Constraints, Environment> second_tree_cbs(second_tree_mapf);
     std::vector<PlanResult<State, Action, int> > second_tree_solution;
 
     //prun OCT
-    std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> treeNodeVector = ct_tree->PreorderPrunTreeTraveling(agentNumber);
+    std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> treeNodeVector = ct_tree->PreorderPrunTreeTraveling(agentNumber, timeStep);
+    //the next two lines are stupid, need to separate Debug mode and regular run because the set is not initialized
+
+    #ifdef NDEBUG
+    // nondebug
+    std::set<size_t> nodesToDelete;
+    #else
+    // debug code
+    std::set<size_t> nodesToDelete={10};
+    nodesToDelete.erase(nodesToDelete.begin()); 
+    #endif
     // for each node, update the paths starting points, constraints and the cost
     int id = 1;
     for (size_t i =0 ; i < treeNodeVector.size(); i++){
@@ -827,7 +840,7 @@ int main(int argc, char* argv[]) {
             //the new path will be calculate in the search phase
             continue;
           }
-          agentIdCounter++;
+          
           int solStateSize = sol.states.size();
           if(solStateSize <= timeStep){
             //the agent allready arrived to his goal (before or in the timestep)
@@ -845,27 +858,40 @@ int main(int argc, char* argv[]) {
               state.second = state.second - timeStep;
             }
           }
+          if (sol.states[0].first.x != startStates[agentIdCounter].x || sol.states[0].first.y != startStates[agentIdCounter].y){
+            //if the node initial state is not the same as the "choosen" start state (we choosed the otinal solution that will be execute so the start state need to match
+            nodesToDelete.insert(i);
+          }
           int size = sol.states.size() - 1;
           newCost += size;
           sol.cost = size;
           std::pair<State, int>* stateEnd = sol.states.end().base();
           sol.fmin = std::abs(sol.states[0].first.x - stateEnd->first.x ) + std::abs(sol.states[0].first.y - stateEnd->first.y);
+          agentIdCounter++;
         }
         // update cost:
         treeNodeVector[i]->highLevelNodeTree->cost = newCost;
     }
+    
+    //todo: remove all nodes from treeNodeVector that is not compatible with the choosen solution from the first fhase
+    //!!!!! Note: the tree that will be return from the second phase will not be correct bescouse it still have the un fitting nodes!!
+    for(std::set<size_t>::reverse_iterator it = nodesToDelete.rbegin(); it != nodesToDelete.rend() ; ++it){
+      treeNodeVector.erase(treeNodeVector.begin() + *it);
+    }
+
     
     // run CBS with the newly created Open list
 
 
     //btree< TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode, Conflict> *second_ct_tree = new btree< TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode, Conflict>();
 
-    Timer second_tree_timer;
+    
     bool second_tree_success = second_tree_cbs.search(startStates, second_tree_solution, ct_tree, treeNodeVector, id, agentNumber);
     second_tree_timer.stop();
+    std::cout << second_tree_timer.elapsedSeconds() <<std::endl;
 
     WriteSolutionToOutputFile(second_tree_success,second_tree_solution,secondOutputFileNew,second_tree_timer,&second_tree_mapf);
-  }
+  //}
   //************second phase- find new pathes after "the agent" goal changed*************//
   
   
