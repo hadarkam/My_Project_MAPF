@@ -10,7 +10,7 @@ namespace libMultiRobotPlanning {
     };
     template <typename HighLevelNode, typename Conflict>
     struct treeNode{
-        int id;
+        //int id;
         HighLevelNode* highLevelNodeTree;
         Conflict conflict;
         typename boost::heap::d_ary_heap< treeNode<HighLevelNode, Conflict>*, boost::heap::arity<2>, 
@@ -39,19 +39,15 @@ namespace libMultiRobotPlanning {
                 destroy_tree();
             }
 
-            treeNode<HighLevelNode, Conflict>* insert(int *id, HighLevelNode* highLevelNodeTree, treeNode<HighLevelNode, Conflict> *node ){
-                return insertPriv(id, highLevelNodeTree, node);
+            treeNode<HighLevelNode, Conflict>* insert(HighLevelNode* highLevelNodeTree, treeNode<HighLevelNode, Conflict> *node ){
+                return insertPriv(highLevelNodeTree, node);
             }
-            treeNode<HighLevelNode, Conflict>* insertRoot(int *id, HighLevelNode* highLevelNodeTree){
-                return insertRootPriv(id, highLevelNodeTree);
+            treeNode<HighLevelNode, Conflict>* insertRoot(HighLevelNode* highLevelNodeTree){
+                return insertRootPriv(highLevelNodeTree);
             }
 
-            treeNode<HighLevelNode, Conflict>* search(int *key){
-                return searchPriv(key);
-            }
             void destroy_tree(){
                 destroy_tree(root);
-                //tree_leafs.clear();
                 new_tree_leafs.clear();
             }
 
@@ -67,19 +63,14 @@ namespace libMultiRobotPlanning {
         private:
             void destroy_tree(treeNode<HighLevelNode, Conflict>* leaf);
 
-            treeNode<HighLevelNode, Conflict>* insertRootPriv(int *id, HighLevelNode* highLevelNodeTree);
+            treeNode<HighLevelNode, Conflict>* insertRootPriv(HighLevelNode* highLevelNodeTree);
 
-            treeNode<HighLevelNode, Conflict>* insertPriv(int *id, HighLevelNode* highLevelNodeTree, treeNode<HighLevelNode, Conflict>* leaf);
-
-            treeNode<HighLevelNode, Conflict>* searchPriv(int *key);
+            treeNode<HighLevelNode, Conflict>* insertPriv(HighLevelNode* highLevelNodeTree, treeNode<HighLevelNode, Conflict>* leaf);
 
             //Prun node right and left childs 
             void prunSubTreePriv(treeNode<HighLevelNode, Conflict> *node);
 
             void PreorderPrunTreeTravelingPriv(treeNode<HighLevelNode, Conflict>* node, size_t agentId, int timeStep);
-
-            
-            std::vector<treeNode<HighLevelNode,Conflict>*> tree_leafs;
 
             std::vector<treeNode<HighLevelNode,Conflict>*> new_tree_leafs;
 
@@ -99,64 +90,41 @@ namespace libMultiRobotPlanning {
     }
 
     template<typename HighLevelNode, typename Conflict>
-    treeNode<HighLevelNode, Conflict>* btree<HighLevelNode, Conflict>::insertRootPriv(int *id, HighLevelNode* highLevelNodeTree){
+    treeNode<HighLevelNode, Conflict>* btree<HighLevelNode, Conflict>::insertRootPriv(HighLevelNode* highLevelNodeTree){
         if(root == NULL){
             root = new treeNode<HighLevelNode, Conflict>();
-            root->id = *id;
             root->highLevelNodeTree = highLevelNodeTree;
             root->conflict = Conflict();
             root->parent = NULL;
             root->child_left = NULL;
             root->child_right = NULL;
         }
-        //tree_leafs.push_back(root);
+        
         return root;
     }
 
     template<typename HighLevelNode, typename Conflict>
-    treeNode<HighLevelNode, Conflict>* btree<HighLevelNode, Conflict>::insertPriv(int *id, HighLevelNode* highLevelNodeTree, treeNode<HighLevelNode, Conflict>* leaf){
+    treeNode<HighLevelNode, Conflict>* btree<HighLevelNode, Conflict>::insertPriv(HighLevelNode* highLevelNodeTree, treeNode<HighLevelNode, Conflict>* leaf){
         if(leaf->child_left == NULL){
             leaf->child_left = new treeNode<HighLevelNode, Conflict>();
-            leaf->child_left->id =*id;
             leaf->child_left->highLevelNodeTree = highLevelNodeTree;
             leaf->child_left->conflict = Conflict();
             leaf->child_left->parent = leaf;
             leaf->child_left->child_left = NULL;
             leaf->child_left->child_right = NULL;
-            //remove leaf from list
-            // typename std::vector<treeNode<HighLevelNodeTree>*>::iterator it = std::find(tree_leafs.begin(), tree_leafs.end(),leaf);
-            // if (it != tree_leafs.end()){
-            //     tree_leafs.erase(it);
-            // }
-            //add leaf to list
-            //tree_leafs.push_back(leaf->child_left);
             
             return leaf->child_left;
         }else{
             leaf->child_right = new treeNode<HighLevelNode, Conflict>();
-            leaf->child_right->id =*id;
             leaf->child_right->highLevelNodeTree = highLevelNodeTree;
             leaf->child_right->conflict =  Conflict();
             leaf->child_right->parent = leaf;
             leaf->child_right->child_left = NULL;
             leaf->child_right->child_right = NULL;
-            //add leaf to list
-            //tree_leafs.push_back(leaf->child_right);
-
             return leaf->child_right;
         }
     }
 
-    template<typename HighLevelNode, typename Conflict>
-    treeNode<HighLevelNode, Conflict>* btree<HighLevelNode, Conflict>::searchPriv(int *key){
-        //search only in leafs! not all tree (because only them can be in open)
-        for(typename std::vector<treeNode<HighLevelNode, Conflict>*>::iterator it = tree_leafs.begin(); it != tree_leafs.end(); ++it) {
-            if((*(it))->id == *key){
-                return *it;
-            }
-        }
-        return NULL;
-    }
 
     template<typename HighLevelNode, typename Conflict>
     void btree<HighLevelNode, Conflict>::prunSubTreePriv(treeNode<HighLevelNode, Conflict> *node){
@@ -170,7 +138,7 @@ namespace libMultiRobotPlanning {
         }
     }
 
-    //return vector of the new CT leaves (to be insert to a new open list)
+    //return vector of the new CT leaves (to be inserted to a new open list)
     template<typename HighLevelNode, typename Conflict>
     void btree<HighLevelNode, Conflict>::PreorderPrunTreeTravelingPriv(treeNode<HighLevelNode, Conflict>* node, size_t agentId, int timeStep){
         if (node == NULL) 
@@ -186,10 +154,10 @@ namespace libMultiRobotPlanning {
             new_tree_leafs.push_back(node);
         }
         
-        /* then recur on left sutree */
+        /* then recur on the left subtree */
         PreorderPrunTreeTravelingPriv(node->child_left, agentId, timeStep);  
     
-        /* now recur on right subtree */
+        /* now recur on the right subtree */
         PreorderPrunTreeTravelingPriv(node->child_right, agentId, timeStep); 
     }
 

@@ -617,11 +617,11 @@ void WriteSolutionToOutputFile(bool success,std::vector<libMultiRobotPlanning::P
 }
 
 void UpdateNodeConstraints(std::vector<Constraints>& constraintsVector, int timeStep){
-  //remove from each constraint with time >= timstep an timestep
+  //remove from each constraint with time >= timestep a timestep
   for ( Constraints& constraint : constraintsVector){
     std::unordered_set<EdgeConstraint> newEdgeConstraints;
     for(EdgeConstraint edgeConstraint : constraint.edgeConstraints){
-        if(edgeConstraint.time > timeStep){ // > : we dont care about "the" timeStep constrain (this is the start point)
+        if(edgeConstraint.time > timeStep){ // > : we don't care about "the" timeStep constrain (this is the start point)
             edgeConstraint.time = edgeConstraint.time - timeStep;
             newEdgeConstraints.insert(edgeConstraint);
         }
@@ -638,6 +638,59 @@ void UpdateNodeConstraints(std::vector<Constraints>& constraintsVector, int time
   }
 }
 
+void UpdateNodes(std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> &treeNodeVector, 
+int& id, int timeStep, size_t agentNumber,std::vector<State> &startStates,std::set<size_t>& nodesToDelete){
+      for (size_t i =0 ; i < treeNodeVector.size(); i++){
+        //update id
+        treeNodeVector[i]->highLevelNodeTree->id = id;
+        
+        id++;
+        // update constraints:
+        UpdateNodeConstraints((treeNodeVector[i]->highLevelNodeTree->constraints), timeStep);
+        //initialize new cost
+        int newCost = 0;
+        // Agent id counter (to find the agentNumbers sol in order to calculate for it a new path)
+        size_t agentIdCounter = 0;
+        // update paths: (delete all places before the timeStep)
+        for( libMultiRobotPlanning::PlanResult<State, Action, int>& sol : treeNodeVector[i]->highLevelNodeTree->solution){
+          if (agentIdCounter == agentNumber){
+            agentIdCounter++;
+            //the new path will be calculated in the search phase
+            continue;
+          }
+          
+          int solStateSize = sol.states.size();
+          if(solStateSize <= timeStep){
+            //the agent already arrived at his goal (before or in the timestep)
+              sol.states.erase(sol.states.begin(), sol.states.begin() + solStateSize-1);
+              sol.actions.erase(sol.actions.begin(), sol.actions.begin() + solStateSize-1);
+              for(std::pair<State, int>& state : sol.states){
+                state.first.time= 0;
+                state.second = 0;
+              }
+          }else{
+            sol.states.erase(sol.states.begin(), sol.states.begin() + timeStep);
+            sol.actions.erase(sol.actions.begin(), sol.actions.begin() + timeStep);
+            for(std::pair<State, int>& state : sol.states){
+              state.first.time= state.first.time - timeStep;
+              state.second = state.second - timeStep;
+            }
+          }
+          if (sol.states[0].first.x != startStates[agentIdCounter].x || sol.states[0].first.y != startStates[agentIdCounter].y){
+            //if the node initial state is not the same as the "chosen" start state (we chose the optimal solution that will be executed so the start state need to match
+            nodesToDelete.insert(i);
+          }
+          int size = sol.states.size() - 1;
+          newCost += size;
+          sol.cost = size;
+          std::pair<State, int>* stateEnd = sol.states.end().base();
+          sol.fmin = std::abs(sol.states[0].first.x - stateEnd->first.x ) + std::abs(sol.states[0].first.y - stateEnd->first.y);
+          agentIdCounter++;
+        }
+        // update cost:
+        treeNodeVector[i]->highLevelNodeTree->cost = newCost;
+    }
+}
 
 int main(int argc, char* argv[]) {
   namespace po = boost::program_options;
@@ -715,7 +768,7 @@ int main(int argc, char* argv[]) {
   }
 
   //Flags checks:
-  //1. The goal is inside the map borders and is not an obstacles 
+  //1. The goal is inside the map borders and is not obstacles 
   if(goal_x > dimx || goal_x < 0 || goal_y < 0|| goal_y >dimy){
     std::cout << "The new goal location is out of map borders!" << std::endl;
     return 0; 
@@ -728,7 +781,7 @@ int main(int argc, char* argv[]) {
   }
   //2. The agent number is valid
   if(agentNumber > goals.size()){
-    std::cout << "The agent number is not valid!" << std::endl;
+    std::cout << "The agentNumber is not valid!" << std::endl;
     return 0;
   }
   //3.timestep >= 0
@@ -737,7 +790,7 @@ int main(int argc, char* argv[]) {
     return 0;
   }
 
-  // todo: compare run time betwwen to diffrent "first phase"
+  // todo: compare run time between to different "first phase"
 
   //************first phase*************// - without saving a tree (regular run)
   // First run of CBS
@@ -768,15 +821,15 @@ int main(int argc, char* argv[]) {
   WriteSolutionToOutputFile(tree_success,tree_solution,outputFileNew,tree_timer,&tree_mapf);
   //************first phase - build CT with CBS*************// 
 
-  //************second phase- find new pathes after "the agent" goal changed*************//
+  //************second phase- find new paths after "the agent" goal changed*************//
 
-  //change the choosen agent goal location
+  //change the chosen agent goal location
   goals[agentNumber].x= goal_x;
   goals[agentNumber].y= goal_y;
-  //change all agents start location using the solution from old cbs
+  //change all agents start location using the solution from old CBS
   for (size_t a = 0; a < solution.size(); ++a) {
     if(solution[a].states.size() <= (size_t)timeStep){
-      // the agent has arrived to its goal loaction
+      // the agent has arrived at its goal location
       startStates[a].x = goals[a].x;
       startStates[a].y = goals[a].y;
     }else{
@@ -797,8 +850,9 @@ int main(int argc, char* argv[]) {
     second_timer.stop();
     std::cout << second_timer.elapsedSeconds() <<std::endl;
 
-      // Write second ouput file with the new paths
+      //Write second output file with the new paths
     WriteSolutionToOutputFile(second_success,second_solution,secondOutputFileBase,second_timer,&second_mapf);
+
 
   //}else{ // approach == "pruning"
 
@@ -820,68 +874,20 @@ int main(int argc, char* argv[]) {
     std::set<size_t> nodesToDelete={10};
     nodesToDelete.erase(nodesToDelete.begin()); 
     #endif
+
     // for each node, update the paths starting points, constraints and the cost
     int id = 1;
-    for (size_t i =0 ; i < treeNodeVector.size(); i++){
-        //update id
-        treeNodeVector[i]->highLevelNodeTree->id = id;
-        
-        id++;
-        // update constraints:
-        UpdateNodeConstraints((treeNodeVector[i]->highLevelNodeTree->constraints), timeStep);
-        //initialize new cost
-        int newCost = 0;
-        // Agent id counter (to find the agentNumber's sol in order to calulate for it a new path)
-        size_t agentIdCounter = 0;
-        // update paths: (delete all places before the timeStep)
-        for( libMultiRobotPlanning::PlanResult<State, Action, int>& sol : treeNodeVector[i]->highLevelNodeTree->solution){
-          if (agentIdCounter == agentNumber){
-            agentIdCounter++;
-            //the new path will be calculate in the search phase
-            continue;
-          }
-          
-          int solStateSize = sol.states.size();
-          if(solStateSize <= timeStep){
-            //the agent allready arrived to his goal (before or in the timestep)
-              sol.states.erase(sol.states.begin(), sol.states.begin() + solStateSize-1);
-              sol.actions.erase(sol.actions.begin(), sol.actions.begin() + solStateSize-1);
-              for(std::pair<State, int>& state : sol.states){
-                state.first.time= 0;
-                state.second = 0;
-              }
-          }else{
-            sol.states.erase(sol.states.begin(), sol.states.begin() + timeStep);
-            sol.actions.erase(sol.actions.begin(), sol.actions.begin() + timeStep);
-            for(std::pair<State, int>& state : sol.states){
-              state.first.time= state.first.time - timeStep;
-              state.second = state.second - timeStep;
-            }
-          }
-          if (sol.states[0].first.x != startStates[agentIdCounter].x || sol.states[0].first.y != startStates[agentIdCounter].y){
-            //if the node initial state is not the same as the "choosen" start state (we choosed the otinal solution that will be execute so the start state need to match
-            nodesToDelete.insert(i);
-          }
-          int size = sol.states.size() - 1;
-          newCost += size;
-          sol.cost = size;
-          std::pair<State, int>* stateEnd = sol.states.end().base();
-          sol.fmin = std::abs(sol.states[0].first.x - stateEnd->first.x ) + std::abs(sol.states[0].first.y - stateEnd->first.y);
-          agentIdCounter++;
-        }
-        // update cost:
-        treeNodeVector[i]->highLevelNodeTree->cost = newCost;
-    }
+    UpdateNodes(treeNodeVector, id, timeStep, agentNumber, startStates, nodesToDelete);
+
     
-    //todo: remove all nodes from treeNodeVector that is not compatible with the choosen solution from the first fhase
-    //!!!!! Note: the tree that will be return from the second phase will not be correct bescouse it still have the un fitting nodes!!
+    //remove all nodes from treeNodeVector that is not compatible with the chosen solution from the first phase(the start point at timeStep is not the same)
+    //!!!!! Note: the tree that will be returned from the second phase will not be correct because it still has the unfitting nodes!!
     for(std::set<size_t>::reverse_iterator it = nodesToDelete.rbegin(); it != nodesToDelete.rend() ; ++it){
       treeNodeVector.erase(treeNodeVector.begin() + *it);
     }
 
     
     // run CBS with the newly created Open list
-
 
     //btree< TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode, Conflict> *second_ct_tree = new btree< TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode, Conflict>();
 
@@ -892,7 +898,7 @@ int main(int argc, char* argv[]) {
 
     WriteSolutionToOutputFile(second_tree_success,second_tree_solution,secondOutputFileNew,second_tree_timer,&second_tree_mapf);
   //}
-  //************second phase- find new pathes after "the agent" goal changed*************//
+  //************second phase- find new paths after "the agent" goal changed*************//
   
   
 
