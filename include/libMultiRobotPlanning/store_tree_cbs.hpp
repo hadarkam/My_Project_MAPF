@@ -151,7 +151,7 @@ class TREE_CBS {
         open; //note: implemented as a max heap data structure
 
     treeNode<HighLevelNode, Conflict>* tree_root;
-    if (cbs_tree->GetRoot() == NULL){
+    if (cbs_tree->GetRoot() == NULL || treeNodeVector.empty()){
       //initialize binary tree and insert root (=start)
       //btree<State,Action,Cost, Conflict, Constraints, Environment> *cbs_tree = new btree<State,Action,Cost, Conflict, Constraints, Environment>();
       //root conflict is null until we find the first conflict (we will split with)

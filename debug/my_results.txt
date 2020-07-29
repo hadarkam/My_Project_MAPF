@@ -1,443 +1,70 @@
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex0.yaml
+../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex9.yaml
+done; cost: 437
+Planning successful! 
+done; cost: 437
+Planning successful! 
+done; cost: 355
+0.65439
+Planning successful! 
+done; cost: 355
+0.651855
+Planning successful! 
+../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex90.yaml
+done; cost: 447
+Planning successful! 
+done; cost: 447
+Planning successful! 
+done; cost: 373
+0.0787426
+Planning successful! 
+done; cost: 373
+0.0312015
+Planning successful! 
+../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex91.yaml
+done; cost: 400
+Planning successful! 
+done; cost: 400
+Planning successful! 
+done; cost: 330
+0.25555
+Planning successful! 
+done; cost: 330
+0.632426
+Planning successful! 
+../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex93.yaml
+done; cost: 484
+Planning successful! 
+done; cost: 484
+Planning successful! 
+done; cost: 383
+0.300054
+Planning successful! 
+done; cost: 383
+0.265307
+Planning successful! 
+../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex95.yaml
+done; cost: 389
+Planning successful! 
+done; cost: 389
+Planning successful! 
+done; cost: 313
+0.0483791
+Planning successful! 
+done; cost: 313
+0.0153379
+Planning successful! 
+../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex97.yaml
 The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex1.yaml
-done; cost: 236
-Planning successful! 
-done; cost: 236
-Planning successful! 
-done; cost: 174
-0.0093473
-Planning successful! 
-done; cost: 174
-0.0009639
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex10.yaml
-done; cost: 223
-Planning successful! 
-done; cost: 223
-Planning successful! 
-done; cost: 166
-0.0117684
-Planning successful! 
-done; cost: 166
-0.0022301
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex11.yaml
-done; cost: 222
-Planning successful! 
-done; cost: 222
-Planning successful! 
-done; cost: 175
-0.0137371
-Planning successful! 
-done; cost: 175
-0.0024328
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex12.yaml
-done; cost: 158
-Planning successful! 
-done; cost: 158
-Planning successful! 
-done; cost: 126
-0.0082397
-Planning successful! 
-done; cost: 126
-0.002819
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex13.yaml
-done; cost: 269
-Planning successful! 
-done; cost: 269
-Planning successful! 
-done; cost: 215
-5.59784
-Planning successful! 
-done; cost: 215
-0.0160338
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex14.yaml
-done; cost: 219
-Planning successful! 
-done; cost: 219
-Planning successful! 
-done; cost: 175
-0.0105677
-Planning successful! 
-done; cost: 175
-0.0049707
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex15.yaml
-done; cost: 232
-Planning successful! 
-done; cost: 232
-Planning successful! 
-done; cost: 191
-0.0163335
-Planning successful! 
-done; cost: 191
-0.0048709
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex16.yaml
-done; cost: 225
-Planning successful! 
-done; cost: 225
-Planning successful! 
-done; cost: 185
-0.0530765
-Planning successful! 
-done; cost: 185
-0.0613432
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex17.yaml
+../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex98.yaml
 The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex18.yaml
-done; cost: 301
+../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex99.yaml
+done; cost: 490
 Planning successful! 
-done; cost: 301
+done; cost: 490
 Planning successful! 
-done; cost: 250
-0.0448295
+done; cost: 409
+0.317835
 Planning successful! 
-done; cost: 250
-0.0530185
+done; cost: 409
+0.393023
 Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex19.yaml
-done; cost: 240
-Planning successful! 
-done; cost: 240
-Planning successful! 
-done; cost: 212
-0.0666607
-Planning successful! 
-done; cost: 212
-0.0061457
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex2.yaml
-done; cost: 244
-Planning successful! 
-done; cost: 244
-Planning successful! 
-done; cost: 196
-0.170607
-Planning successful! 
-done; cost: 196
-0.166859
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex20.yaml
-done; cost: 227
-Planning successful! 
-done; cost: 227
-Planning successful! 
-done; cost: 180
-0.120947
-Planning successful! 
-done; cost: 180
-0.0315391
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex21.yaml
-done; cost: 243
-Planning successful! 
-done; cost: 243
-Planning successful! 
-done; cost: 230
-0.259462
-Planning successful! 
-done; cost: 230
-0.231795
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex22.yaml
-done; cost: 178
-Planning successful! 
-done; cost: 178
-Planning successful! 
-done; cost: 130
-0.0084013
-Planning successful! 
-done; cost: 130
-0.000493
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex23.yaml
-The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex24.yaml
-done; cost: 205
-Planning successful! 
-done; cost: 205
-Planning successful! 
-done; cost: 174
-0.0130876
-Planning successful! 
-done; cost: 174
-0.0033393
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex25.yaml
-The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex26.yaml
-The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex27.yaml
-done; cost: 250
-Planning successful! 
-done; cost: 250
-Planning successful! 
-done; cost: 200
-0.045568
-Planning successful! 
-done; cost: 200
-0.0426242
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex28.yaml
-The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex29.yaml
-The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex3.yaml
-done; cost: 224
-Planning successful! 
-done; cost: 224
-Planning successful! 
-done; cost: 155
-0.0099926
-Planning successful! 
-done; cost: 155
-0.0016238
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex30.yaml
-done; cost: 240
-Planning successful! 
-done; cost: 240
-Planning successful! 
-done; cost: 201
-0.0882265
-Planning successful! 
-done; cost: 201
-0.0025379
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex31.yaml
-done; cost: 166
-Planning successful! 
-done; cost: 166
-Planning successful! 
-done; cost: 148
-0.0267669
-Planning successful! 
-done; cost: 148
-0.0167835
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex32.yaml
-The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex33.yaml
-The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex34.yaml
-The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex35.yaml
-done; cost: 237
-Planning successful! 
-done; cost: 237
-Planning successful! 
-done; cost: 206
-0.0888895
-Planning successful! 
-done; cost: 206
-0.0290745
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex36.yaml
-done; cost: 253
-Planning successful! 
-done; cost: 253
-Planning successful! 
-done; cost: 238
-0.0273542
-Planning successful! 
-done; cost: 238
-0.010018
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex37.yaml
-done; cost: 170
-Planning successful! 
-done; cost: 170
-Planning successful! 
-done; cost: 158
-0.0176127
-Planning successful! 
-done; cost: 158
-0.0087259
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex38.yaml
-done; cost: 200
-Planning successful! 
-done; cost: 200
-Planning successful! 
-done; cost: 179
-0.0089278
-Planning successful! 
-done; cost: 179
-0.0030234
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex39.yaml
-done; cost: 186
-Planning successful! 
-done; cost: 186
-Planning successful! 
-done; cost: 157
-0.011724
-Planning successful! 
-done; cost: 157
-0.0085168
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex4.yaml
-done; cost: 186
-Planning successful! 
-done; cost: 186
-Planning successful! 
-done; cost: 170
-0.0069291
-Planning successful! 
-done; cost: 170
-0.0016701
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex40.yaml
-done; cost: 201
-Planning successful! 
-done; cost: 201
-Planning successful! 
-done; cost: 180
-0.118768
-Planning successful! 
-done; cost: 180
-0.0255135
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex41.yaml
-done; cost: 302
-Planning successful! 
-done; cost: 302
-Planning successful! 
-done; cost: 233
-0.0683557
-Planning successful! 
-done; cost: 233
-0.0508964
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex42.yaml
-done; cost: 222
-Planning successful! 
-done; cost: 222
-Planning successful! 
-done; cost: 165
-0.0466668
-Planning successful! 
-done; cost: 165
-0.0219176
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex43.yaml
-done; cost: 294
-Planning successful! 
-done; cost: 294
-Planning successful! 
-done; cost: 252
-6.70229
-Planning successful! 
-done; cost: 252
-19.5474
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex44.yaml
-The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex45.yaml
-done; cost: 226
-Planning successful! 
-done; cost: 226
-Planning successful! 
-done; cost: 201
-0.0581693
-Planning successful! 
-done; cost: 201
-0.0418545
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex46.yaml
-The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex47.yaml
-done; cost: 177
-Planning successful! 
-done; cost: 177
-Planning successful! 
-done; cost: 145
-0.0082446
-Planning successful! 
-done; cost: 145
-0.0049265
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex48.yaml
-done; cost: 259
-Planning successful! 
-done; cost: 259
-Planning successful! 
-done; cost: 218
-0.0166525
-Planning successful! 
-done; cost: 218
-0.0093834
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex49.yaml
-done; cost: 152
-Planning successful! 
-done; cost: 152
-Planning successful! 
-done; cost: 110
-0.004604
-Planning successful! 
-done; cost: 110
-0.0008806
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex5.yaml
-done; cost: 188
-Planning successful! 
-done; cost: 188
-Planning successful! 
-done; cost: 157
-0.021231
-Planning successful! 
-done; cost: 157
-0.0021439
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex50.yaml
-done; cost: 264
-Planning successful! 
-done; cost: 264
-Planning successful! 
-done; cost: 251
-0.101136
-Planning successful! 
-done; cost: 251
-0.0719544
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex51.yaml
-done; cost: 210
-Planning successful! 
-done; cost: 210
-Planning successful! 
-done; cost: 192
-0.116705
-Planning successful! 
-done; cost: 192
-0.0577025
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex52.yaml
-done; cost: 211
-Planning successful! 
-done; cost: 211
-Planning successful! 
-done; cost: 171
-0.0072016
-Planning successful! 
-done; cost: 171
-0.0018076
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex53.yaml
-done; cost: 197
-Planning successful! 
-done; cost: 197
-Planning successful! 
-done; cost: 169
-0.0326415
-Planning successful! 
-done; cost: 169
-0.0074857
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex54.yaml

@@ -59,6 +59,7 @@ namespace libMultiRobotPlanning {
             treeNode<HighLevelNode, Conflict>* GetRoot(){
                 return root;
             }
+            void nullToRoot();
 
         private:
             void destroy_tree(treeNode<HighLevelNode, Conflict>* leaf);
@@ -75,6 +76,7 @@ namespace libMultiRobotPlanning {
             std::vector<treeNode<HighLevelNode,Conflict>*> new_tree_leafs;
 
             treeNode<HighLevelNode, Conflict>* root;
+            
 
     };
 
@@ -159,6 +161,11 @@ namespace libMultiRobotPlanning {
     
         /* now recur on the right subtree */
         PreorderPrunTreeTravelingPriv(node->child_right, agentId, timeStep); 
+    }
+
+    template<typename HighLevelNode, typename Conflict>
+    void btree<HighLevelNode, Conflict>::nullToRoot(){
+        root = NULL;
     }
 
 }  // namespace libMultiRobotPlanning

@@ -638,8 +638,9 @@ void UpdateNodeConstraints(std::vector<Constraints>& constraintsVector, int time
   }
 }
 
-void UpdateNodes(std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> &treeNodeVector, 
-int& id, int timeStep, size_t agentNumber,std::vector<State> &startStates,std::set<size_t>& nodesToDelete){
+std::set<size_t>* UpdateNodes(std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> &treeNodeVector, 
+int& id, int timeStep, size_t agentNumber,std::vector<State> &startStates){
+      std::set<size_t>* nodesToDelete = new std::set<size_t>{};
       for (size_t i =0 ; i < treeNodeVector.size(); i++){
         //update id
         treeNodeVector[i]->highLevelNodeTree->id = id;
@@ -678,7 +679,7 @@ int& id, int timeStep, size_t agentNumber,std::vector<State> &startStates,std::s
           }
           if (sol.states[0].first.x != startStates[agentIdCounter].x || sol.states[0].first.y != startStates[agentIdCounter].y){
             //if the node initial state is not the same as the "chosen" start state (we chose the optimal solution that will be executed so the start state need to match
-            nodesToDelete.insert(i);
+            nodesToDelete->insert(i);
           }
           int size = sol.states.size() - 1;
           newCost += size;
@@ -690,6 +691,7 @@ int& id, int timeStep, size_t agentNumber,std::vector<State> &startStates,std::s
         // update cost:
         treeNodeVector[i]->highLevelNodeTree->cost = newCost;
     }
+    return nodesToDelete;
 }
 
 int main(int argc, char* argv[]) {
@@ -789,6 +791,17 @@ int main(int argc, char* argv[]) {
     std::cout << "The timeStep can not be negative!" << std::endl;
     return 0;
   }
+  //4. Check that the new goal is not the same as another agent goal
+  for (const auto& elem: goals){
+    if(elem.x == goal_x && elem.y == goal_y){
+      std::cout << "The goal location is the same as another agent goal!" << std::endl;
+      return 0;
+    }
+  }
+
+  // open csv file to write results
+  std::ofstream myfile;
+  myfile.open ("results_for_graph.csv",std::ios_base::app);
 
   // todo: compare run time between to different "first phase"
 
@@ -866,26 +879,21 @@ int main(int argc, char* argv[]) {
     std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> treeNodeVector = ct_tree->PreorderPrunTreeTraveling(agentNumber, timeStep);
     //the next two lines are stupid, need to separate Debug mode and regular run because the set is not initialized
 
-    #ifdef NDEBUG
-    // nondebug
-    std::set<size_t> nodesToDelete;
-    #else
-    // debug code
-    std::set<size_t> nodesToDelete={10};
-    nodesToDelete.erase(nodesToDelete.begin()); 
-    #endif
 
     // for each node, update the paths starting points, constraints and the cost
     int id = 1;
-    UpdateNodes(treeNodeVector, id, timeStep, agentNumber, startStates, nodesToDelete);
+    std::set<size_t>* nodesToDelete = UpdateNodes(treeNodeVector, id, timeStep, agentNumber, startStates);
 
     
     //remove all nodes from treeNodeVector that is not compatible with the chosen solution from the first phase(the start point at timeStep is not the same)
     //!!!!! Note: the tree that will be returned from the second phase will not be correct because it still has the unfitting nodes!!
-    for(std::set<size_t>::reverse_iterator it = nodesToDelete.rbegin(); it != nodesToDelete.rend() ; ++it){
+    for(std::set<size_t>::reverse_iterator it = (*nodesToDelete).rbegin(); it != (*nodesToDelete).rend() ; ++it){
       treeNodeVector.erase(treeNodeVector.begin() + *it);
     }
-
+    if (treeNodeVector.empty()){
+      ct_tree->nullToRoot();
+    }
+    delete nodesToDelete;
     
     // run CBS with the newly created Open list
 
@@ -900,7 +908,9 @@ int main(int argc, char* argv[]) {
   //}
   //************second phase- find new paths after "the agent" goal changed*************//
   
-  
+  // write results to file
+  myfile << second_timer.elapsedSeconds() << "," << second_tree_timer.elapsedSeconds() << "\n";
+  myfile.close();
 
   //*************old*************
 
