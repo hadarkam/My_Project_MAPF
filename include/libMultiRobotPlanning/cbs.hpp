@@ -83,7 +83,7 @@ class CBS {
   CBS(Environment& environment) : m_env(environment) {}
 
   bool search(const std::vector<State>& initialStates,
-              std::vector<PlanResult<State, Action, Cost> >& solution) {
+              std::vector<PlanResult<State, Action, Cost> >& solution, std::ofstream& myfile2, std::size_t agentNumber, int timeStep, std::ofstream& myfile3) {
     HighLevelNode start;
     start.solution.resize(initialStates.size());
     start.constraints.resize(initialStates.size());
@@ -127,6 +127,22 @@ class CBS {
       if (!m_env.getFirstConflict(P.solution, conflict)) {
         std::cout << "done; cost: " << P.cost << std::endl;
         solution = P.solution;
+        //for debuge:
+        std::cout << "old: number of developed nodes: " << id<< std::endl;
+        myfile2 << id << ",";
+        int conflictCounter = 0;
+        for (const auto& c : P.constraints[agentNumber].vertexConstraints) {
+            if (c.time > timeStep){
+              conflictCounter++;
+            }
+        }
+        for (const auto& c : P.constraints[agentNumber].edgeConstraints) {
+            if (c.time > timeStep){
+              conflictCounter++;
+            }
+        }
+        myfile3 << conflictCounter << ",";
+
         return true;
       }
 

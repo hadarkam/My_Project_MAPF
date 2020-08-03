@@ -1,4 +1,7 @@
-for f in ../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex9*; do
+for f in ../benchmark/32x32_obst204/map_32by32_obst204_agents30_ex*; do
+    if [ "$f" == "../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex54.yaml" ]; then
+        continue
+    fi
     if [ "$f" == "../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex18.yaml" ]; then
         continue
     fi

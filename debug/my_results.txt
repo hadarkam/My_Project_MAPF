@@ -1,70 +1,23 @@
-../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex9.yaml
-done; cost: 437
+../benchmark/32x32_obst204/map_32by32_obst204_agents30_ex0.yaml
+done; cost: 534
+old: number of developed nodes: 2877
+base CBS: 11.6379
 Planning successful! 
-done; cost: 437
+done; cost: 534
+tree CBS: 31.8309
 Planning successful! 
-done; cost: 355
-0.65439
+difference( tree / base): 2.73511
+done; cost: 419
+old: number of developed nodes: 97
+0.657549
 Planning successful! 
-done; cost: 355
-0.651855
+new: number of relevent nodes to re-use:0
+done; cost: 419
+0.838883
 Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex90.yaml
-done; cost: 447
-Planning successful! 
-done; cost: 447
-Planning successful! 
-done; cost: 373
-0.0787426
-Planning successful! 
-done; cost: 373
-0.0312015
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex91.yaml
-done; cost: 400
-Planning successful! 
-done; cost: 400
-Planning successful! 
-done; cost: 330
-0.25555
-Planning successful! 
-done; cost: 330
-0.632426
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex93.yaml
-done; cost: 484
-Planning successful! 
-done; cost: 484
-Planning successful! 
-done; cost: 383
-0.300054
-Planning successful! 
-done; cost: 383
-0.265307
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex95.yaml
-done; cost: 389
-Planning successful! 
-done; cost: 389
-Planning successful! 
-done; cost: 313
-0.0483791
-Planning successful! 
-done; cost: 313
-0.0153379
-Planning successful! 
-../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex97.yaml
+../benchmark/32x32_obst204/map_32by32_obst204_agents30_ex1.yaml
 The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex98.yaml
+../benchmark/32x32_obst204/map_32by32_obst204_agents30_ex10.yaml
+../benchmark/32x32_obst204/map_32by32_obst204_agents30_ex11.yaml
 The new goal location is an obstacle!
-../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex99.yaml
-done; cost: 490
-Planning successful! 
-done; cost: 490
-Planning successful! 
-done; cost: 409
-0.317835
-Planning successful! 
-done; cost: 409
-0.393023
-Planning successful! 
+../benchmark/32x32_obst204/map_32by32_obst204_agents30_ex12.yaml
