@@ -616,85 +616,87 @@ void WriteSolutionToOutputFile(bool success,std::vector<libMultiRobotPlanning::P
   }
 }
 
-void UpdateNodeConstraints(std::vector<Constraints>& constraintsVector, int timeStep){
+
+  void UpdateNodeConstraints(std::vector<Constraints>& constraintsVector, int timeStep){
   //remove from each constraint with time >= timestep a timestep
-  for ( Constraints& constraint : constraintsVector){
-    std::unordered_set<EdgeConstraint> newEdgeConstraints;
-    for(EdgeConstraint edgeConstraint : constraint.edgeConstraints){
-        if(edgeConstraint.time > timeStep){ // > : we don't care about "the" timeStep constrain (this is the start point)
-            edgeConstraint.time = edgeConstraint.time - timeStep;
-            newEdgeConstraints.insert(edgeConstraint);
-        }
-    }
-    constraint.edgeConstraints = newEdgeConstraints;
-    std::unordered_set<VertexConstraint> newVertexConstraints;
-    for(VertexConstraint vertexConstraint : constraint.vertexConstraints){
-        if(vertexConstraint.time > timeStep){
-            vertexConstraint.time = vertexConstraint.time - timeStep;
-            newVertexConstraints.insert(vertexConstraint);
-        }
-    }
-    constraint.vertexConstraints = newVertexConstraints;
-  }
-}
-
-std::set<size_t>* UpdateNodes(std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> &treeNodeVector, 
-int& id, int timeStep, size_t agentNumber,std::vector<State> &startStates){
-      std::set<size_t>* nodesToDelete = new std::set<size_t>{};
-      for (size_t i =0 ; i < treeNodeVector.size(); i++){
-        //update id
-        treeNodeVector[i]->highLevelNodeTree->id = id;
-        
-        id++;
-
-        //initialize new cost
-        int newCost = 0;
-        // Agent id counter (to find the agentNumbers sol in order to calculate for it a new path)
-        size_t agentIdCounter = 0;
-        // update paths: (delete all places before the timeStep)
-        for( libMultiRobotPlanning::PlanResult<State, Action, int>& sol : treeNodeVector[i]->highLevelNodeTree->solution){
-          if (sol.states[timeStep].first.x != startStates[agentIdCounter].x || sol.states[timeStep].first.y != startStates[agentIdCounter].y){
-            //if the node initial state is not the same as the "chosen" start state (we chose the optimal solution that will be executed so the start state need to match
-            nodesToDelete->insert(i);
-            break;
+      for ( Constraints& constraint : constraintsVector){
+          std::unordered_set<EdgeConstraint> newEdgeConstraints;
+          for(EdgeConstraint edgeConstraint : constraint.edgeConstraints){
+              if(edgeConstraint.time > timeStep){ // > : we don't care about "the" timeStep constrain (this is the start point)
+                      edgeConstraint.time = edgeConstraint.time - timeStep;
+                      newEdgeConstraints.insert(edgeConstraint);
+              }
           }
-          if (agentIdCounter == agentNumber){
-            agentIdCounter++;
-            //the new path will be calculated in the search phase
-            continue;
+          constraint.edgeConstraints = newEdgeConstraints;
+          std::unordered_set<VertexConstraint> newVertexConstraints;
+          for(VertexConstraint vertexConstraint : constraint.vertexConstraints){
+              if(vertexConstraint.time > timeStep){
+                  vertexConstraint.time = vertexConstraint.time - timeStep;
+                  newVertexConstraints.insert(vertexConstraint);
+              }
+          }
+          constraint.vertexConstraints = newVertexConstraints;
+      }
+  }
+  //template<typename HighLevelNode, typename Conflict, typename State>
+  bool UpdateNodes(treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>* node, int& id, int timeStep, size_t agentNumber,std::vector<State> &startStates){
+      //update id
+      node->highLevelNodeTree->id = id;
+      id++;
+      //initialize new cost
+      int newCost = 0;
+      //check which nodes are relevent
+      for( std::size_t i = 0; i < node->highLevelNodeTree->solution.size(); i++){
+        libMultiRobotPlanning::PlanResult<State, Action, int>& sol = node->highLevelNodeTree->solution[i];
+        if((int)sol.states.size() > timeStep){
+          //the agent has not arrived at his goal (before or in the timestep)
+          if (sol.states[timeStep].first.x != startStates[i].x || sol.states[timeStep].first.y != startStates[i].y){
+            //we eant to remove all nodes from treeNodeVector that is not compatible with the chosen solution from the first phase(the start point at timeStep is not the same)
+            return false;
+          }
+        }
+      }
+      // update paths: (delete all places before the timeStep)
+      for( std::size_t i = 0; i < node->highLevelNodeTree->solution.size(); i++){
+          libMultiRobotPlanning::PlanResult<State, Action, int>& sol = node->highLevelNodeTree->solution[i];
+          int solStateSize = sol.states.size();
+
+          if (i == agentNumber){
+              //the new path will be calculated in the search phase
+              continue;
           }
           
-          int solStateSize = sol.states.size();
           if(solStateSize <= timeStep){
-            //the agent already arrived at his goal (before or in the timestep)
+              //the agent already arrived at his goal (before or in the timestep)
               sol.states.erase(sol.states.begin(), sol.states.begin() + solStateSize-1);
               sol.actions.erase(sol.actions.begin(), sol.actions.begin() + solStateSize-1);
               for(std::pair<State, int>& state : sol.states){
-                state.first.time= 0;
-                state.second = 0;
+                  state.first.time= 0;
+                  state.second = 0;
               }
           }else{
-            sol.states.erase(sol.states.begin(), sol.states.begin() + timeStep);
-            sol.actions.erase(sol.actions.begin(), sol.actions.begin() + timeStep);
-            for(std::pair<State, int>& state : sol.states){
-              state.first.time= state.first.time - timeStep;
-              state.second = state.second - timeStep;
-            }
+              sol.states.erase(sol.states.begin(), sol.states.begin() + timeStep);
+              sol.actions.erase(sol.actions.begin(), sol.actions.begin() + timeStep);
+              for(std::pair<State, int>& state : sol.states){
+                state.first.time= state.first.time - timeStep;
+                state.second = state.second - timeStep;
+              }
           }
           int size = sol.states.size() - 1;
           newCost += size;
           sol.cost = size;
           std::pair<State, int>* stateEnd = sol.states.end().base();
           sol.fmin = std::abs(sol.states[0].first.x - stateEnd->first.x ) + std::abs(sol.states[0].first.y - stateEnd->first.y);
-          agentIdCounter++;
-        }
-        // update constraints:
-        UpdateNodeConstraints((treeNodeVector[i]->highLevelNodeTree->constraints), timeStep);
-        // update cost:
-        treeNodeVector[i]->highLevelNodeTree->cost = newCost;
-    }
-    return nodesToDelete;
-}
+      }
+      // update constraints:
+      UpdateNodeConstraints((node->highLevelNodeTree->constraints), timeStep);
+      // update cost:
+      node->highLevelNodeTree->cost = newCost;
+  
+      return true;
+  }
+
+
 
 int main(int argc, char* argv[]) {
   namespace po = boost::program_options;
@@ -801,6 +803,7 @@ int main(int argc, char* argv[]) {
     }
   }
 
+
   // open csv file to write results
   std::ofstream myfile;
   myfile.open ("results_for_graph.csv",std::ios_base::app);
@@ -808,6 +811,15 @@ int main(int argc, char* argv[]) {
   myfile2.open ("results_for_graph_improment_to_number_of_nodes.csv",std::ios_base::app);
   std::ofstream myfile3;
   myfile3.open ("results_for_graph_number_of_constraint_fisrt_level",std::ios_base::app);
+  std::ofstream myfile4;
+  myfile4.open ("results_for_graph_old_and_new_distance_to_goal",std::ios_base::app);
+  std::ofstream myfile5;
+  myfile5.open ("results_for_graph__distance_between_goals",std::ios_base::app);
+  myfile5 << inputFile << ",";
+  myfile5 << sqrt(pow((startStates[agentNumber].x -goal_x),2) + pow((startStates[agentNumber].y -goal_y),2)) << std::endl;
+  myfile5.close();
+  // return 0 ;
+
 
   // todo: compare run time between to different "first phase"
 
@@ -831,7 +843,7 @@ int main(int argc, char* argv[]) {
   TREE_CBS<State, Action, int, Conflict, Constraints, Environment> tree_cbs(tree_mapf);
   std::vector<PlanResult<State, Action, int> > tree_solution;
 
-  btree< TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode, Conflict> *ct_tree = new btree< TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode, Conflict>();
+  btree< TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode, Conflict, State> *ct_tree = new btree< TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode, Conflict, State>();
 
   Timer tree_timer;
   std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> emptyVector = std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*>();
@@ -845,6 +857,12 @@ int main(int argc, char* argv[]) {
 
   //************second phase- find new paths after "the agent" goal changed*************//
 
+  // for results only:
+  int distance_to_old_goal = 0;
+  if ((int)(solution[agentNumber].states.size()) > timeStep){
+    distance_to_old_goal = std::abs(solution[agentNumber].states[timeStep].first.x - goals[agentNumber].x ) + std::abs(solution[agentNumber].states[timeStep].first.y - goals[agentNumber].y );
+  }
+
   //change the chosen agent goal location
   goals[agentNumber].x= goal_x;
   goals[agentNumber].y= goal_y;
@@ -852,14 +870,25 @@ int main(int argc, char* argv[]) {
   for (size_t a = 0; a < solution.size(); ++a) {
     if(solution[a].states.size() <= (size_t)timeStep){
       // the agent has arrived at its goal location
-      startStates[a].x = goals[a].x;
-      startStates[a].y = goals[a].y;
+      if( a == agentNumber){
+        //in this case our agent allready arrived to its old goal but now he needs to go to its new goal
+        // Note: if I want him to remain in its old goal then no second phase needs to occur.
+        startStates[a].x = solution[a].states.back().first.x;
+        startStates[a].y =solution[a].states.back().first.y;
+      }else{
+        startStates[a].x = goals[a].x;
+        startStates[a].y = goals[a].y;
+      }
     }else{
     startStates[a].x = solution[a].states[timeStep].first.x;
     startStates[a].y = solution[a].states[timeStep].first.y;
     }
   }
 
+  // for results only:
+  int distance_to_new_goal = std::abs(startStates[agentNumber].x - goals[agentNumber].x ) + std::abs(startStates[agentNumber].y - goals[agentNumber].y );
+  int distance_difference =  std::abs( distance_to_new_goal - distance_to_old_goal );
+  myfile4 << distance_difference << std::endl;
   //if(approach == "baseline" ){
     //make new environment and run cbs:
     Timer second_timer;
@@ -887,26 +916,12 @@ int main(int argc, char* argv[]) {
     std::vector<PlanResult<State, Action, int> > second_tree_solution;
 
     //prun OCT
-    std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> treeNodeVector = ct_tree->PreorderPrunTreeTraveling(agentNumber, timeStep);
-    //the next two lines are stupid, need to separate Debug mode and regular run because the set is not initialized
-
-
-    // for each node, update the paths starting points, constraints and the cost
     int id = 1;
-    std::set<size_t>* nodesToDelete = UpdateNodes(treeNodeVector, id, timeStep, agentNumber, startStates);
+    std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> treeNodeVector = ct_tree->PreorderPrunTreeTraveling(agentNumber, timeStep,id, agentNumber, startStates);
 
-    
-    //remove all nodes from treeNodeVector that is not compatible with the chosen solution from the first phase(the start point at timeStep is not the same)
-    //!!!!! Note: the tree that will be returned from the second phase will not be correct because it still has the unfitting nodes!!
-    for(std::set<size_t>::reverse_iterator it = (*nodesToDelete).rbegin(); it != (*nodesToDelete).rend() ; ++it){
-      treeNodeVector.erase(treeNodeVector.begin() + *it);
-    }
     if (treeNodeVector.empty()){
       ct_tree->nullToRoot();
     }
-    delete nodesToDelete;
-
-    
     //debuge print:
     std::cout<< "new: number of relevent nodes to re-use:" << treeNodeVector.size() <<std::endl;
     myfile2 << treeNodeVector.size() << std:: endl;
@@ -929,47 +944,9 @@ int main(int argc, char* argv[]) {
   myfile.close();
   myfile2.close();
   myfile3.close();
+  myfile4.close();
 
-  //*************old*************
 
-  // if (success) {
-  //   std::cout << "Planning successful! " << std::endl;
-  //   int cost = 0;
-  //   int makespan = 0;
-  //   for (const auto& s : solution) {
-  //     cost += s.cost;
-  //     makespan = std::max<int>(makespan, s.cost);
-  //   }
-
-  //   std::ofstream out(outputFile);
-  //   out << "statistics:" << std::endl;
-  //   out << "  cost: " << cost << std::endl;
-  //   out << "  makespan: " << makespan << std::endl;
-  //   out << "  runtime: " << timer.elapsedSeconds() << std::endl;
-  //   out << "  highLevelExpanded: " << mapf.highLevelExpanded() << std::endl;
-  //   out << "  lowLevelExpanded: " << mapf.lowLevelExpanded() << std::endl;
-  //   out << "schedule:" << std::endl;
-  //   for (size_t a = 0; a < solution.size(); ++a) {
-  //     // std::cout << "Solution for: " << a << std::endl;
-  //     // for (size_t i = 0; i < solution[a].actions.size(); ++i) {
-  //     //   std::cout << solution[a].states[i].second << ": " <<
-  //     //   solution[a].states[i].first << "->" << solution[a].actions[i].first
-  //     //   << "(cost: " << solution[a].actions[i].second << ")" << std::endl;
-  //     // }
-  //     // std::cout << solution[a].states.back().second << ": " <<
-  //     // solution[a].states.back().first << std::endl;
-
-  //     out << "  agent" << a << ":" << std::endl;
-  //     for (const auto& state : solution[a].states) {
-  //       out << "    - x: " << state.first.x << std::endl
-  //           << "      y: " << state.first.y << std::endl
-  //           << "      t: " << state.second << std::endl;
-  //     }
-  //   }
-    
-  // } else {
-  //   std::cout << "Planning NOT successful!" << std::endl;
-  // }
 
 //*************old*************
   delete ct_tree;

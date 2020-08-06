@@ -117,7 +117,7 @@ class TREE_CBS {
 
   TREE_CBS(Environment& environment) : m_env(environment) {}
 
-  bool search(const std::vector<State>& initialStates, std::vector<PlanResult<State, Action, Cost> >& solution, btree< HighLevelNode, Conflict> *cbs_tree,
+  bool search(const std::vector<State>& initialStates, std::vector<PlanResult<State, Action, Cost> >& solution, btree< HighLevelNode, Conflict, State> *cbs_tree,
   std::vector<treeNode<HighLevelNode,Conflict>*>& treeNodeVector, int id, int agentNumber) {
     HighLevelNode *start = new HighLevelNode();
 
