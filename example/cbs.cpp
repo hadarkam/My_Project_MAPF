@@ -617,8 +617,9 @@ void WriteSolutionToOutputFile(bool success,std::vector<libMultiRobotPlanning::P
 }
 
 
-  void UpdateNodeConstraints(std::vector<Constraints>& constraintsVector, int timeStep){
+  int UpdateNodeConstraints(std::vector<Constraints>& constraintsVector, int timeStep){
   //remove from each constraint with time >= timestep a timestep
+      int total_number_of_constraints_in_node =0;
       for ( Constraints& constraint : constraintsVector){
           std::unordered_set<EdgeConstraint> newEdgeConstraints;
           for(EdgeConstraint edgeConstraint : constraint.edgeConstraints){
@@ -627,6 +628,7 @@ void WriteSolutionToOutputFile(bool success,std::vector<libMultiRobotPlanning::P
                       newEdgeConstraints.insert(edgeConstraint);
               }
           }
+          total_number_of_constraints_in_node += newEdgeConstraints.size();
           constraint.edgeConstraints = newEdgeConstraints;
           std::unordered_set<VertexConstraint> newVertexConstraints;
           for(VertexConstraint vertexConstraint : constraint.vertexConstraints){
@@ -635,11 +637,13 @@ void WriteSolutionToOutputFile(bool success,std::vector<libMultiRobotPlanning::P
                   newVertexConstraints.insert(vertexConstraint);
               }
           }
+          total_number_of_constraints_in_node += newVertexConstraints.size();
           constraint.vertexConstraints = newVertexConstraints;
       }
+      return total_number_of_constraints_in_node;
   }
   //template<typename HighLevelNode, typename Conflict, typename State>
-  bool UpdateNodes(treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>* node, int& id, int timeStep, size_t agentNumber,std::vector<State> &startStates){
+  bool UpdateNodes(treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>* node, int& id, int timeStep, size_t agentNumber,std::vector<State> &startStates, bool &simple_node_with_zero_constraints_exist){
       //update id
       node->highLevelNodeTree->id = id;
       id++;
@@ -655,6 +659,13 @@ void WriteSolutionToOutputFile(bool success,std::vector<libMultiRobotPlanning::P
             return false;
           }
         }
+      }
+      // update constraints:
+      int total_number_of_constraints_in_node = UpdateNodeConstraints((node->highLevelNodeTree->constraints), timeStep);
+      if( 0 == total_number_of_constraints_in_node && simple_node_with_zero_constraints_exist==true){
+        return false;
+      }else if(0 == total_number_of_constraints_in_node){
+        simple_node_with_zero_constraints_exist = true;
       }
       // update paths: (delete all places before the timeStep)
       for( std::size_t i = 0; i < node->highLevelNodeTree->solution.size(); i++){
@@ -688,8 +699,7 @@ void WriteSolutionToOutputFile(bool success,std::vector<libMultiRobotPlanning::P
           std::pair<State, int>* stateEnd = sol.states.end().base();
           sol.fmin = std::abs(sol.states[0].first.x - stateEnd->first.x ) + std::abs(sol.states[0].first.y - stateEnd->first.y);
       }
-      // update constraints:
-      UpdateNodeConstraints((node->highLevelNodeTree->constraints), timeStep);
+
       // update cost:
       node->highLevelNodeTree->cost = newCost;
   
@@ -703,10 +713,10 @@ int main(int argc, char* argv[]) {
   // Declare the supported options.
   po::options_description desc("Allowed options");
   std::string inputFile;
-  std::string outputFileBase;
-  std::string outputFileNew;
-  std::string secondOutputFileBase;
-  std::string secondOutputFileNew;
+  std::string outputFileBase = "/home/hadar/My_Project_MAPF/debug/outputFileBase.yaml";
+  std::string outputFileNew = "/home/hadar/My_Project_MAPF/debug/outputFileNew.yaml";
+  std::string secondOutputFileBase = "/home/hadar/My_Project_MAPF/debug/secondOutputFileBase.yaml";
+  std::string secondOutputFileNew = "/home/hadar/My_Project_MAPF/debug/secondOutputFileNew.yaml";
   std::string approach;
   std::size_t agentNumber;
   int timeStep;
@@ -717,14 +727,6 @@ int main(int argc, char* argv[]) {
       ("help", "produce help message")
       ("input,i", po::value<std::string>(&inputFile)->required(),
       "input file (YAML)")
-      ("outputFileBase", po::value<std::string>(&outputFileBase)->required(),
-      "output file Baseline (YAML)")
-      ("outputFileNew", po::value<std::string>(&outputFileNew)->required(),
-      "output file new (YAML)")
-      ("secondOutputFileBase", po::value<std::string>(&secondOutputFileBase)->required(),
-      "second output file Baseline (YAML)")
-      ("secondOutputFileNew", po::value<std::string>(&secondOutputFileNew)->required(),
-      "second output file new (YAML)")
       ("approach", po::value<std::string>(&approach)->required(),
       "naive or pruning approach")
       ("agentNumber", po::value<std::size_t>(&agentNumber)->required(),
@@ -890,7 +892,7 @@ int main(int argc, char* argv[]) {
   int distance_difference =  std::abs( distance_to_new_goal - distance_to_old_goal );
   myfile4 << distance_difference << std::endl;
   //if(approach == "baseline" ){
-    //make new environment and run cbs:
+    // //make new environment and run cbs:
     Timer second_timer;
     Environment second_mapf(dimx, dimy, obstacles, goals);
     CBS<State, Action, int, Conflict, Constraints, Environment> second_cbs(second_mapf);
@@ -917,7 +919,10 @@ int main(int argc, char* argv[]) {
 
     //prun OCT
     int id = 1;
+    Timer check_alg_time;
     std::vector<treeNode<TREE_CBS<State, Action, int, Conflict, Constraints, Environment>::HighLevelNode,Conflict>*> treeNodeVector = ct_tree->PreorderPrunTreeTraveling(agentNumber, timeStep,id, agentNumber, startStates);
+    check_alg_time.stop();
+    std::cout << "time to udate all nodes in new algorithem " << check_alg_time.elapsedSeconds() << std::endl;
 
     if (treeNodeVector.empty()){
       ct_tree->nullToRoot();

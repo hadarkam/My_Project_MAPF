@@ -3,210 +3,257 @@ The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex1.yaml
 done; cost: 236
 old: number of developed nodes: 1
-base CBS: 0.0072829
+base CBS: 0.0093693
 Planning successful! 
 done; cost: 236
-tree CBS: 0.0092809
+time with open list: 0.0008044
+tree CBS: 0.0099841
 Planning successful! 
-difference( tree / base): 1.27434
+difference( tree / base): 1.06562
 done; cost: 179
 old: number of developed nodes: 3
-0.0069577
+0.0076445
 Planning successful! 
+time to udate all nodes in new algorithem 4.09e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0005955
 done; cost: 179
-0.002297
+time with open list: 0.0020183
+0.0030591
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex10.yaml
 done; cost: 223
 old: number of developed nodes: 11
-base CBS: 0.0693592
+base CBS: 0.0711405
 Planning successful! 
 done; cost: 223
-tree CBS: 0.0728202
+time with open list: 0.0629893
+tree CBS: 0.0880805
 Planning successful! 
-difference( tree / base): 1.0499
+difference( tree / base): 1.23812
 done; cost: 155
 old: number of developed nodes: 3
-0.0106851
+0.0114237
 Planning successful! 
+time to udate all nodes in new algorithem 8.23e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0002959
 done; cost: 155
-0.001589
+time with open list: 0.000325
+0.0009354
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex11.yaml
 done; cost: 222
 old: number of developed nodes: 3
-base CBS: 0.0249306
+base CBS: 0.024204
 Planning successful! 
 done; cost: 222
-tree CBS: 0.0236332
+time with open list: 0.0088425
+tree CBS: 0.0286931
 Planning successful! 
-difference( tree / base): 0.94796
+difference( tree / base): 1.18547
 done; cost: 180
 old: number of developed nodes: 1
-0.0127222
+0.0139759
 Planning successful! 
+time to udate all nodes in new algorithem 3.66e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0020651
 done; cost: 180
-0.0031597
+time with open list: 0.000294
+0.0026415
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex12.yaml
 done; cost: 158
 old: number of developed nodes: 1
-base CBS: 0.0086278
+base CBS: 0.0091916
 Planning successful! 
 done; cost: 158
-tree CBS: 0.0090416
+time with open list: 0.0003988
+tree CBS: 0.0095929
 Planning successful! 
-difference( tree / base): 1.04796
+difference( tree / base): 1.04366
 done; cost: 101
 old: number of developed nodes: 1
-0.0057476
+0.0062861
 Planning successful! 
+time to udate all nodes in new algorithem 3.89e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0002319
 done; cost: 101
-0.0006334
+time with open list: 0.000448
+0.0010287
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex13.yaml
 done; cost: 269
 old: number of developed nodes: 93
-base CBS: 4.26039
+base CBS: 4.87997
 Planning successful! 
 done; cost: 269
-tree CBS: 4.42721
+time with open list: 4.7246
+tree CBS: 4.76934
 Planning successful! 
-difference( tree / base): 1.03916
+difference( tree / base): 0.977331
 done; cost: 226
 old: number of developed nodes: 139
-4.90941
+5.35006
 Planning successful! 
+time to udate all nodes in new algorithem 0.0015143
 new: number of relevent nodes to re-use:47
+time to insert all reused nodes to open list: 0.003613
 done; cost: 226
-0.123942
+time with open list: 0.0006636
+0.0061368
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex14.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex15.yaml
 done; cost: 232
 old: number of developed nodes: 15
-base CBS: 0.229202
+base CBS: 0.22028
 Planning successful! 
 done; cost: 232
-tree CBS: 0.201401
+time with open list: 0.190853
+tree CBS: 0.211364
 Planning successful! 
-difference( tree / base): 0.878706
+difference( tree / base): 0.959523
 done; cost: 170
 old: number of developed nodes: 1
-0.0127932
+0.0126348
 Planning successful! 
+time to udate all nodes in new algorithem 0.000116
 new: number of relevent nodes to re-use:0
 done; cost: 170
-0.0133704
+time with open list: 0.0003357
+0.012327
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex16.yaml
 done; cost: 225
 old: number of developed nodes: 11
-base CBS: 0.156988
+base CBS: 0.16038
 Planning successful! 
 done; cost: 225
-tree CBS: 0.12323
+time with open list: 0.192133
+tree CBS: 0.20209
 Planning successful! 
-difference( tree / base): 0.784966
+difference( tree / base): 1.26007
 done; cost: 170
 old: number of developed nodes: 3
-0.047989
+0.10141
 Planning successful! 
+time to udate all nodes in new algorithem 8.28e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0004932
 done; cost: 170
-0.0013081
+time with open list: 0.00055
+0.0014308
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex17.yaml
 done; cost: 201
 old: number of developed nodes: 3
-base CBS: 0.0194878
+base CBS: 0.0349014
 Planning successful! 
 done; cost: 201
-tree CBS: 0.0191474
+time with open list: 0.0066699
+tree CBS: 0.0236999
 Planning successful! 
-difference( tree / base): 0.982533
+difference( tree / base): 0.679053
 done; cost: 121
 old: number of developed nodes: 3
-0.011064
+0.0119284
 Planning successful! 
+time to udate all nodes in new algorithem 6.87e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0005804
 done; cost: 121
-0.0018619
+time with open list: 0.0003458
+0.0013104
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex18.yaml
 done; cost: 301
 old: number of developed nodes: 5
-base CBS: 0.029139
+base CBS: 0.035296
 Planning successful! 
 done; cost: 301
-tree CBS: 0.028825
+time with open list: 0.0110018
+tree CBS: 0.0335291
 Planning successful! 
-difference( tree / base): 0.989224
+difference( tree / base): 0.949941
 done; cost: 237
 old: number of developed nodes: 5
-0.0179337
+0.021838
 Planning successful! 
+time to udate all nodes in new algorithem 0.00011
 new: number of relevent nodes to re-use:3
+time to insert all reused nodes to open list: 0.0006546
 done; cost: 237
-0.0019266
+time with open list: 0.0004146
+0.0015079
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex19.yaml
 done; cost: 240
 old: number of developed nodes: 3
-base CBS: 0.0864391
+base CBS: 0.101356
 Planning successful! 
 done; cost: 240
-tree CBS: 0.0950536
+time with open list: 0.0664101
+tree CBS: 0.0831093
 Planning successful! 
-difference( tree / base): 1.09966
+difference( tree / base): 0.819973
 done; cost: 199
 old: number of developed nodes: 3
-0.0546594
+0.0610824
 Planning successful! 
+time to udate all nodes in new algorithem 8.23e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0003778
 done; cost: 199
-0.0016998
+time with open list: 0.0008948
+0.0017133
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex2.yaml
 done; cost: 244
 old: number of developed nodes: 7
-base CBS: 0.0418733
+base CBS: 0.0459878
 Planning successful! 
 done; cost: 244
-tree CBS: 0.0349336
+time with open list: 0.016491
+tree CBS: 0.0395979
 Planning successful! 
-difference( tree / base): 0.834269
+difference( tree / base): 0.861052
 done; cost: 190
 old: number of developed nodes: 7
-0.0203683
+0.0238868
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001299
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0010064
 done; cost: 190
-0.0036499
+time with open list: 0.0003815
+0.0018253
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex20.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex21.yaml
 done; cost: 243
 old: number of developed nodes: 7
-base CBS: 0.0246151
+base CBS: 0.0291276
 Planning successful! 
 done; cost: 243
-tree CBS: 0.0243918
+time with open list: 0.0138308
+tree CBS: 0.0282331
 Planning successful! 
-difference( tree / base): 0.990928
+difference( tree / base): 0.96929
 done; cost: 199
 old: number of developed nodes: 7
-0.0140699
+0.0197238
 Planning successful! 
+time to udate all nodes in new algorithem 0.0002036
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0008036
 done; cost: 199
-0.0023862
+time with open list: 0.0003782
+0.0017078
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex22.yaml
 The new goal location is an obstacle!
@@ -215,72 +262,88 @@ The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex24.yaml
 done; cost: 205
 old: number of developed nodes: 3
-base CBS: 0.013798
+base CBS: 0.0181368
 Planning successful! 
 done; cost: 205
-tree CBS: 0.0145293
+time with open list: 0.0017725
+tree CBS: 0.0135537
 Planning successful! 
-difference( tree / base): 1.053
+difference( tree / base): 0.747304
 done; cost: 159
 old: number of developed nodes: 3
-0.0112525
+0.0125092
 Planning successful! 
+time to udate all nodes in new algorithem 7.47e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0017824
 done; cost: 159
-0.0042809
+time with open list: 0.0004593
+0.002634
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex25.yaml
 done; cost: 265
 old: number of developed nodes: 11
-base CBS: 0.0642857
+base CBS: 0.0663375
 Planning successful! 
 done; cost: 265
-tree CBS: 0.0755765
+time with open list: 0.0381876
+tree CBS: 0.0713078
 Planning successful! 
-difference( tree / base): 1.17563
+difference( tree / base): 1.07492
 done; cost: 220
 old: number of developed nodes: 15
-0.0460811
+0.0508515
 Planning successful! 
+time to udate all nodes in new algorithem 6.54e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0005011
 done; cost: 220
-0.02948
+time with open list: 0.029903
+0.030729
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex26.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex27.yaml
 done; cost: 250
 old: number of developed nodes: 3
-base CBS: 0.0374392
+base CBS: 0.0409628
 Planning successful! 
 done; cost: 250
-tree CBS: 0.052073
+time with open list: 0.0272064
+tree CBS: 0.0372653
 Planning successful! 
-difference( tree / base): 1.39087
+difference( tree / base): 0.909735
 done; cost: 173
 old: number of developed nodes: 1
-0.0104451
+0.0088633
 Planning successful! 
+time to udate all nodes in new algorithem 4.95e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0008904
 done; cost: 173
-0.0020334
+time with open list: 0.000232
+0.0014293
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex28.yaml
 done; cost: 229
 old: number of developed nodes: 9
-base CBS: 0.0854357
+base CBS: 0.0743558
 Planning successful! 
 done; cost: 229
-tree CBS: 0.0737235
+time with open list: 0.0542464
+tree CBS: 0.081239
 Planning successful! 
-difference( tree / base): 0.862912
+difference( tree / base): 1.09257
 done; cost: 174
 old: number of developed nodes: 7
-0.0201551
+0.022388
 Planning successful! 
+time to udate all nodes in new algorithem 0.000163
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0003495
 done; cost: 174
-0.0015494
+time with open list: 0.0007047
+0.0015142
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex29.yaml
 The new goal location is an obstacle!
@@ -289,36 +352,44 @@ The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex30.yaml
 done; cost: 240
 old: number of developed nodes: 11
-base CBS: 0.149307
+base CBS: 0.145578
 Planning successful! 
 done; cost: 240
-tree CBS: 0.10899
+time with open list: 0.115664
+tree CBS: 0.128385
 Planning successful! 
-difference( tree / base): 0.729972
+difference( tree / base): 0.8819
 done; cost: 212
 old: number of developed nodes: 11
-0.0891722
+0.0899939
 Planning successful! 
+time to udate all nodes in new algorithem 0.0002227
 new: number of relevent nodes to re-use:6
+time to insert all reused nodes to open list: 0.005596
 done; cost: 212
-0.0248303
+time with open list: 0.0006127
+0.0069533
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex31.yaml
 done; cost: 166
 old: number of developed nodes: 9
-base CBS: 0.0310372
+base CBS: 0.0320663
 Planning successful! 
 done; cost: 166
-tree CBS: 0.0289124
+time with open list: 0.0240387
+tree CBS: 0.03205
 Planning successful! 
-difference( tree / base): 0.93154
+difference( tree / base): 0.999492
 done; cost: 124
 old: number of developed nodes: 71
-0.138643
+0.150798
 Planning successful! 
+time to udate all nodes in new algorithem 5.6e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0003195
 done; cost: 124
-0.0288673
+time with open list: 0.0313196
+0.0319338
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex32.yaml
 The new goal location is an obstacle!
@@ -327,74 +398,90 @@ The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex34.yaml
 done; cost: 218
 old: number of developed nodes: 63
-base CBS: 0.126026
+base CBS: 0.119126
 Planning successful! 
 done; cost: 218
-tree CBS: 0.106426
+time with open list: 0.0924483
+tree CBS: 0.103776
 Planning successful! 
-difference( tree / base): 0.844473
+difference( tree / base): 0.871144
 done; cost: 173
 old: number of developed nodes: 3
-0.0095502
+0.0122213
 Planning successful! 
+time to udate all nodes in new algorithem 0.000482
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0011017
 done; cost: 173
-0.0032479
+time with open list: 0.0004894
+0.0024659
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex35.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex36.yaml
 done; cost: 253
 old: number of developed nodes: 37
-base CBS: 0.100747
+base CBS: 0.113003
 Planning successful! 
 done; cost: 253
-tree CBS: 0.084353
+time with open list: 0.0662391
+tree CBS: 0.0909893
 Planning successful! 
-difference( tree / base): 0.837278
+difference( tree / base): 0.805195
 done; cost: 211
 old: number of developed nodes: 7
-0.0292271
+0.0287965
 Planning successful! 
+time to udate all nodes in new algorithem 0.0003767
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0010157
 done; cost: 211
-0.0124022
+time with open list: 0.0126921
+0.0144384
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex37.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex38.yaml
 done; cost: 200
 old: number of developed nodes: 1
-base CBS: 0.0108874
+base CBS: 0.0104728
 Planning successful! 
 done; cost: 200
-tree CBS: 0.0098717
+time with open list: 0.0003947
+tree CBS: 0.0116305
 Planning successful! 
-difference( tree / base): 0.906709
+difference( tree / base): 1.11054
 done; cost: 170
 old: number of developed nodes: 1
-0.0193324
+0.0188504
 Planning successful! 
+time to udate all nodes in new algorithem 3.09e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.012958
 done; cost: 170
-0.0123368
+time with open list: 0.0003439
+0.0136987
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex39.yaml
 done; cost: 186
 old: number of developed nodes: 7
-base CBS: 0.0134604
+base CBS: 0.0142333
 Planning successful! 
 done; cost: 186
-tree CBS: 0.0128323
+time with open list: 0.0027021
+tree CBS: 0.0136233
 Planning successful! 
-difference( tree / base): 0.953337
+difference( tree / base): 0.957143
 done; cost: 141
 old: number of developed nodes: 17
-0.0476488
+0.0527707
 Planning successful! 
-new: number of relevent nodes to re-use:2
+time to udate all nodes in new algorithem 8.52e-05
+new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0014847
 done; cost: 141
-0.0745259
+time with open list: 0.0403377
+0.0422891
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex4.yaml
 The new goal location is an obstacle!
@@ -411,329 +498,404 @@ The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex45.yaml
 done; cost: 226
 old: number of developed nodes: 5
-base CBS: 0.0337754
+base CBS: 0.0302086
 Planning successful! 
 done; cost: 226
-tree CBS: 0.0276125
+time with open list: 0.0206596
+tree CBS: 0.0278564
 Planning successful! 
-difference( tree / base): 0.817533
+difference( tree / base): 0.922135
 done; cost: 174
 old: number of developed nodes: 7
-0.0282813
+0.0408168
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001107
 new: number of relevent nodes to re-use:3
+time to insert all reused nodes to open list: 0.0003504
 done; cost: 174
-0.0149649
+time with open list: 0.0131628
+0.0139732
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex46.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex47.yaml
 done; cost: 177
 old: number of developed nodes: 13
-base CBS: 0.0151747
+base CBS: 0.0150532
 Planning successful! 
 done; cost: 177
-tree CBS: 0.0156645
+time with open list: 0.0106086
+tree CBS: 0.0180638
 Planning successful! 
-difference( tree / base): 1.03228
+difference( tree / base): 1.2
 done; cost: 122
 old: number of developed nodes: 3
-0.0051907
+0.005839
 Planning successful! 
+time to udate all nodes in new algorithem 7.88e-05
 new: number of relevent nodes to re-use:3
+time to insert all reused nodes to open list: 0.0002384
 done; cost: 122
-0.0011453
+time with open list: 0.0003279
+0.0010128
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex48.yaml
 done; cost: 259
 old: number of developed nodes: 5
-base CBS: 0.0224583
+base CBS: 0.02276
 Planning successful! 
 done; cost: 259
-tree CBS: 0.0248488
+time with open list: 0.0104091
+tree CBS: 0.0234606
 Planning successful! 
-difference( tree / base): 1.10644
+difference( tree / base): 1.03078
 done; cost: 197
 old: number of developed nodes: 3
-0.0068244
+0.0097661
 Planning successful! 
+time to udate all nodes in new algorithem 4e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0003896
 done; cost: 197
-0.0011711
+time with open list: 0.0003507
+0.0010535
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex49.yaml
 done; cost: 152
 old: number of developed nodes: 1
-base CBS: 0.0061542
+base CBS: 0.0069457
 Planning successful! 
 done; cost: 152
-tree CBS: 0.0069784
+time with open list: 0.0003786
+tree CBS: 0.0078611
 Planning successful! 
-difference( tree / base): 1.13392
+difference( tree / base): 1.13179
 done; cost: 115
 old: number of developed nodes: 1
-0.0052118
+0.0063097
 Planning successful! 
+time to udate all nodes in new algorithem 3.77e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0008394
 done; cost: 115
-0.0016417
+time with open list: 0.0004374
+0.001783
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex5.yaml
 done; cost: 188
 old: number of developed nodes: 3
-base CBS: 0.0279975
+base CBS: 0.0365638
 Planning successful! 
 done; cost: 188
-tree CBS: 0.0301986
+time with open list: 0.0271156
+tree CBS: 0.0349335
 Planning successful! 
-difference( tree / base): 1.07862
+difference( tree / base): 0.955412
 done; cost: 138
 old: number of developed nodes: 5
-0.0225034
+0.0412637
 Planning successful! 
+time to udate all nodes in new algorithem 7.58e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0002324
 done; cost: 138
-0.0024222
+time with open list: 0.0069865
+0.0076841
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex50.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex51.yaml
 done; cost: 210
 old: number of developed nodes: 3
-base CBS: 0.133255
+base CBS: 0.122222
 Planning successful! 
 done; cost: 210
-tree CBS: 0.110808
+time with open list: 0.100014
+tree CBS: 0.108942
 Planning successful! 
-difference( tree / base): 0.831547
+difference( tree / base): 0.891348
 done; cost: 175
 old: number of developed nodes: 3
-0.0676451
+0.0703095
 Planning successful! 
+time to udate all nodes in new algorithem 7.82e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0007463
 done; cost: 175
-0.0023924
+time with open list: 0.0007831
+0.0020016
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex52.yaml
 done; cost: 211
 old: number of developed nodes: 3
-base CBS: 0.0152037
+base CBS: 0.015569
 Planning successful! 
 done; cost: 211
-tree CBS: 0.0166482
+time with open list: 0.005981
+tree CBS: 0.0183573
 Planning successful! 
-difference( tree / base): 1.09501
+difference( tree / base): 1.17909
 done; cost: 148
 old: number of developed nodes: 1
-0.0070385
+0.0066196
 Planning successful! 
+time to udate all nodes in new algorithem 3.18e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0002501
 done; cost: 148
-0.0008484
+time with open list: 0.0004607
+0.0009752
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex53.yaml
 done; cost: 197
 old: number of developed nodes: 39
-base CBS: 0.0515554
+base CBS: 0.0549176
 Planning successful! 
 done; cost: 197
-tree CBS: 0.0599048
+time with open list: 0.0542741
+tree CBS: 0.0683779
 Planning successful! 
-difference( tree / base): 1.16195
+difference( tree / base): 1.2451
 done; cost: 138
 old: number of developed nodes: 17
-0.0209601
+0.0227096
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001587
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0004975
 done; cost: 138
-0.0034478
+time with open list: 0.0003464
+0.0012661
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex55.yaml
 done; cost: 219
 old: number of developed nodes: 37
-base CBS: 0.177301
+base CBS: 0.173418
 Planning successful! 
 done; cost: 219
-tree CBS: 0.146159
+time with open list: 0.11481
+tree CBS: 0.157157
 Planning successful! 
-difference( tree / base): 0.824356
+difference( tree / base): 0.90623
 done; cost: 167
 old: number of developed nodes: 21
-0.148654
+0.175015
 Planning successful! 
+time to udate all nodes in new algorithem 0.0002378
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0005751
 done; cost: 167
-0.136561
+time with open list: 0.137382
+0.138466
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex56.yaml
 done; cost: 221
 old: number of developed nodes: 23
-base CBS: 0.0580209
+base CBS: 0.0686871
 Planning successful! 
 done; cost: 221
-tree CBS: 0.0730223
+time with open list: 0.0423121
+tree CBS: 0.0522724
 Planning successful! 
-difference( tree / base): 1.25855
+difference( tree / base): 0.761022
 done; cost: 156
 old: number of developed nodes: 11
-0.0193112
+0.0182434
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001804
 new: number of relevent nodes to re-use:6
+time to insert all reused nodes to open list: 0.0003041
 done; cost: 156
-0.0065693
+time with open list: 0.0045309
+0.0052999
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex57.yaml
 done; cost: 270
 old: number of developed nodes: 11
-base CBS: 0.0363765
+base CBS: 0.0382675
 Planning successful! 
 done; cost: 270
-tree CBS: 0.037708
+time with open list: 0.0234416
+tree CBS: 0.0378988
 Planning successful! 
-difference( tree / base): 1.0366
+difference( tree / base): 0.990365
 done; cost: 243
 old: number of developed nodes: 3
-0.0146298
+0.0191753
 Planning successful! 
-new: number of relevent nodes to re-use:4
+time to udate all nodes in new algorithem 7.92e-05
+new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0009844
 done; cost: 243
-0.0159232
+time with open list: 0.0050949
+0.0064396
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex58.yaml
 done; cost: 214
 old: number of developed nodes: 27
-base CBS: 0.0542213
+base CBS: 0.0630583
 Planning successful! 
 done; cost: 214
-tree CBS: 0.070908
+time with open list: 0.0691578
+tree CBS: 0.0861092
 Planning successful! 
-difference( tree / base): 1.30775
+difference( tree / base): 1.36555
 done; cost: 159
 old: number of developed nodes: 21
-0.0318592
+0.0342407
 Planning successful! 
+time to udate all nodes in new algorithem 0.0002859
 new: number of relevent nodes to re-use:9
+time to insert all reused nodes to open list: 0.0010334
 done; cost: 159
-0.0131428
+time with open list: 0.0059561
+0.0077046
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex59.yaml
 done; cost: 197
 old: number of developed nodes: 49
-base CBS: 0.0941709
+base CBS: 0.105425
 Planning successful! 
 done; cost: 197
-tree CBS: 0.0790241
+time with open list: 0.0748093
+tree CBS: 0.0842426
 Planning successful! 
-difference( tree / base): 0.839156
+difference( tree / base): 0.799078
 done; cost: 131
 old: number of developed nodes: 9
-0.0110815
+0.013254
 Planning successful! 
+time to udate all nodes in new algorithem 0.000386
 new: number of relevent nodes to re-use:0
 done; cost: 131
-0.0109382
+time with open list: 0.0043146
+0.0117537
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex6.yaml
 done; cost: 252
 old: number of developed nodes: 3
-base CBS: 0.0270744
+base CBS: 0.0336686
 Planning successful! 
 done; cost: 252
-tree CBS: 0.0319084
+time with open list: 0.0116372
+tree CBS: 0.0297595
 Planning successful! 
-difference( tree / base): 1.17855
+difference( tree / base): 0.883895
 done; cost: 197
 old: number of developed nodes: 3
-0.0230293
+0.0255234
 Planning successful! 
+time to udate all nodes in new algorithem 7.98e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0008592
 done; cost: 197
-0.0021569
+time with open list: 0.0004803
+0.0017964
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex60.yaml
 done; cost: 229
 old: number of developed nodes: 9
-base CBS: 0.0224042
+base CBS: 0.024776
 Planning successful! 
 done; cost: 229
-tree CBS: 0.0232862
+time with open list: 0.0065937
+tree CBS: 0.0260342
 Planning successful! 
-difference( tree / base): 1.03937
+difference( tree / base): 1.05078
 done; cost: 175
 old: number of developed nodes: 1
-0.0121984
+0.0143875
 Planning successful! 
+time to udate all nodes in new algorithem 5.09e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0003434
 done; cost: 175
-0.0011101
+time with open list: 0.0003223
+0.0010187
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex61.yaml
 done; cost: 211
 old: number of developed nodes: 11
-base CBS: 0.0599412
+base CBS: 0.0611627
 Planning successful! 
 done; cost: 211
-tree CBS: 0.0816446
+time with open list: 0.0652606
+tree CBS: 0.0760451
 Planning successful! 
-difference( tree / base): 1.36208
+difference( tree / base): 1.24332
 done; cost: 173
 old: number of developed nodes: 7
-0.0375325
+0.0391608
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001615
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0008921
 done; cost: 173
-0.0041525
+time with open list: 0.0003208
+0.0016839
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex62.yaml
 done; cost: 279
 old: number of developed nodes: 3
-base CBS: 0.036359
+base CBS: 0.0361601
 Planning successful! 
 done; cost: 279
-tree CBS: 0.0346818
+time with open list: 0.0183587
+tree CBS: 0.039028
 Planning successful! 
-difference( tree / base): 0.953871
+difference( tree / base): 1.07931
 done; cost: 213
 old: number of developed nodes: 3
-0.023299
+0.0262192
 Planning successful! 
+time to udate all nodes in new algorithem 6.49e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0003547
 done; cost: 213
-0.0017342
+time with open list: 0.0003645
+0.0010958
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex63.yaml
 done; cost: 267
 old: number of developed nodes: 25
-base CBS: 0.10131
+base CBS: 0.121225
 Planning successful! 
 done; cost: 267
-tree CBS: 0.0935719
+time with open list: 0.082992
+tree CBS: 0.0963002
 Planning successful! 
-difference( tree / base): 0.923617
+difference( tree / base): 0.794389
 done; cost: 218
 old: number of developed nodes: 5
-0.0126204
+0.0133875
 Planning successful! 
+time to udate all nodes in new algorithem 0.0002041
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0008023
 done; cost: 218
-0.0065527
+time with open list: 0.0044665
+0.0060116
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex64.yaml
 done; cost: 203
 old: number of developed nodes: 7
-base CBS: 0.0199839
+base CBS: 0.0217923
 Planning successful! 
 done; cost: 203
-tree CBS: 0.0244206
+time with open list: 0.0085953
+tree CBS: 0.024685
 Planning successful! 
-difference( tree / base): 1.22201
+difference( tree / base): 1.13274
 done; cost: 169
 old: number of developed nodes: 5
-0.0141304
+0.0123576
 Planning successful! 
+time to udate all nodes in new algorithem 5.77e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0006729
 done; cost: 169
-0.0048202
+time with open list: 0.0023428
+0.0033856
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex65.yaml
 The new goal location is an obstacle!
@@ -742,399 +904,490 @@ The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex67.yaml
 done; cost: 227
 old: number of developed nodes: 33
-base CBS: 0.0603429
+base CBS: 0.0765748
 Planning successful! 
 done; cost: 227
-tree CBS: 0.0747739
+time with open list: 0.0528803
+tree CBS: 0.0645615
 Planning successful! 
-difference( tree / base): 1.23915
+difference( tree / base): 0.843117
 done; cost: 176
 old: number of developed nodes: 23
-0.0347543
+0.0395953
 Planning successful! 
+time to udate all nodes in new algorithem 0.0002969
 new: number of relevent nodes to re-use:10
+time to insert all reused nodes to open list: 0.0001707
 done; cost: 176
-0.0121457
+time with open list: 0.0099285
+0.0106438
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex68.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex69.yaml
 done; cost: 234
 old: number of developed nodes: 13
-base CBS: 0.0952734
+base CBS: 0.11116
 Planning successful! 
 done; cost: 234
-tree CBS: 0.0944152
+time with open list: 0.0673138
+tree CBS: 0.0841086
 Planning successful! 
-difference( tree / base): 0.990992
+difference( tree / base): 0.756647
 done; cost: 192
 old: number of developed nodes: 7
-0.0398407
+0.0440506
 Planning successful! 
+time to udate all nodes in new algorithem 0.0002222
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0010032
 done; cost: 192
-0.0054904
+time with open list: 0.0005198
+0.0021773
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex7.yaml
 done; cost: 245
 old: number of developed nodes: 21
-base CBS: 0.108871
+base CBS: 0.101447
 Planning successful! 
 done; cost: 245
-tree CBS: 0.0891357
+time with open list: 0.0708862
+tree CBS: 0.0998782
 Planning successful! 
-difference( tree / base): 0.818725
+difference( tree / base): 0.984539
 done; cost: 177
 old: number of developed nodes: 7
-0.0214605
+0.0225351
 Planning successful! 
+time to udate all nodes in new algorithem 0.0002814
 new: number of relevent nodes to re-use:8
+time to insert all reused nodes to open list: 0.000315
 done; cost: 177
-0.004628
+time with open list: 0.0017548
+0.0026683
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex70.yaml
 done; cost: 184
 old: number of developed nodes: 61
-base CBS: 0.616923
+base CBS: 0.647127
 Planning successful! 
 done; cost: 184
-tree CBS: 0.648089
+time with open list: 0.647075
+tree CBS: 0.658173
 Planning successful! 
-difference( tree / base): 1.05052
+difference( tree / base): 1.01707
 done; cost: 150
 old: number of developed nodes: 29
-0.225745
+0.247933
 Planning successful! 
+time to udate all nodes in new algorithem 0.0002476
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0003971
 done; cost: 150
-0.153185
+time with open list: 0.168951
+0.169839
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex71.yaml
 done; cost: 232
 old: number of developed nodes: 7
-base CBS: 0.0301421
+base CBS: 0.0250945
 Planning successful! 
 done; cost: 232
-tree CBS: 0.0234182
+time with open list: 0.0052223
+tree CBS: 0.0224813
 Planning successful! 
-difference( tree / base): 0.776927
+difference( tree / base): 0.895866
 done; cost: 182
 old: number of developed nodes: 7
-0.0121073
+0.0121825
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001063
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0003033
 done; cost: 182
-0.0026409
+time with open list: 0.0003553
+0.001012
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex72.yaml
 done; cost: 276
 old: number of developed nodes: 1
-base CBS: 0.0168346
+base CBS: 0.0186349
 Planning successful! 
 done; cost: 276
-tree CBS: 0.0177082
+time with open list: 0.0004078
+tree CBS: 0.0156622
 Planning successful! 
-difference( tree / base): 1.05189
+difference( tree / base): 0.840477
 done; cost: 220
 old: number of developed nodes: 3
-0.0452969
+0.0380776
 Planning successful! 
+time to udate all nodes in new algorithem 4.17e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0004583
 done; cost: 220
-0.032461
+time with open list: 0.0344719
+0.035301
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex73.yaml
 done; cost: 203
 old: number of developed nodes: 7
-base CBS: 0.0281627
+base CBS: 0.0284142
 Planning successful! 
 done; cost: 203
-tree CBS: 0.027363
+time with open list: 0.0163174
+tree CBS: 0.027987
 Planning successful! 
-difference( tree / base): 0.971604
+difference( tree / base): 0.984965
 done; cost: 148
 old: number of developed nodes: 7
-0.0229884
+0.0215553
 Planning successful! 
+time to udate all nodes in new algorithem 9.46e-05
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0002806
 done; cost: 148
-0.0018383
+time with open list: 0.0002922
+0.000973
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex74.yaml
 done; cost: 239
 old: number of developed nodes: 3
-base CBS: 0.0206041
+base CBS: 0.021398
 Planning successful! 
 done; cost: 239
-tree CBS: 0.0196068
+time with open list: 0.0040091
+tree CBS: 0.0221605
 Planning successful! 
-difference( tree / base): 0.951597
+difference( tree / base): 1.03563
 done; cost: 194
 old: number of developed nodes: 1
-0.0153999
+0.0135032
 Planning successful! 
+time to udate all nodes in new algorithem 4.53e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0004431
 done; cost: 194
-0.0012744
+time with open list: 0.0004648
+0.0013023
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex75.yaml
 done; cost: 189
 old: number of developed nodes: 27
-base CBS: 0.235177
+base CBS: 0.228582
 Planning successful! 
 done; cost: 189
-tree CBS: 0.190071
+time with open list: 0.176406
+tree CBS: 0.189208
 Planning successful! 
-difference( tree / base): 0.808204
+difference( tree / base): 0.827746
 done; cost: 139
 old: number of developed nodes: 5
-0.0345523
+0.0353461
 Planning successful! 
+time to udate all nodes in new algorithem 0.000131
 new: number of relevent nodes to re-use:0
 done; cost: 139
-0.0355193
+time with open list: 0.024457
+0.0336633
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex76.yaml
 done; cost: 205
 old: number of developed nodes: 3
-base CBS: 0.0130128
+base CBS: 0.0178387
 Planning successful! 
 done; cost: 205
-tree CBS: 0.0134045
+time with open list: 0.0021748
+tree CBS: 0.0166008
 Planning successful! 
-difference( tree / base): 1.0301
+difference( tree / base): 0.930606
 done; cost: 161
 old: number of developed nodes: 3
-0.0121288
+0.0132265
 Planning successful! 
-new: number of relevent nodes to re-use:2
+time to udate all nodes in new algorithem 3.73e-05
+new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0003155
 done; cost: 161
-0.0016344
+time with open list: 0.0003943
+0.0009622
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex77.yaml
 done; cost: 284
 old: number of developed nodes: 21
-base CBS: 0.140958
+base CBS: 0.155826
 Planning successful! 
 done; cost: 284
-tree CBS: 0.113635
+time with open list: 0.0814416
+tree CBS: 0.113007
 Planning successful! 
-difference( tree / base): 0.80616
+difference( tree / base): 0.725216
 done; cost: 229
 old: number of developed nodes: 13
-0.0479792
+0.0555039
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001647
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0005004
 done; cost: 229
-0.0027649
+time with open list: 0.000475
+0.001365
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex78.yaml
 done; cost: 252
 old: number of developed nodes: 3
-base CBS: 0.0387274
+base CBS: 0.0389066
 Planning successful! 
 done; cost: 252
-tree CBS: 0.0386616
+time with open list: 0.0259422
+tree CBS: 0.0488083
 Planning successful! 
-difference( tree / base): 0.998301
+difference( tree / base): 1.2545
 done; cost: 208
 old: number of developed nodes: 5
-0.0311192
+0.0342051
 Planning successful! 
+time to udate all nodes in new algorithem 7.42e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0007231
 done; cost: 208
-0.0094086
+time with open list: 0.0074971
+0.0086534
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex79.yaml
 done; cost: 288
 old: number of developed nodes: 1
-base CBS: 0.0206646
+base CBS: 0.0283262
 Planning successful! 
 done; cost: 288
-tree CBS: 0.0219772
+time with open list: 0.0003828
+tree CBS: 0.0243069
 Planning successful! 
-difference( tree / base): 1.06352
+difference( tree / base): 0.858107
 done; cost: 241
 old: number of developed nodes: 1
-0.016915
+0.0172941
 Planning successful! 
+time to udate all nodes in new algorithem 3.87e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0049936
 done; cost: 241
-0.0054358
+time with open list: 0.0003819
+0.0057389
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex8.yaml
 done; cost: 187
 old: number of developed nodes: 29
-base CBS: 0.156661
+base CBS: 0.162848
 Planning successful! 
 done; cost: 187
-tree CBS: 0.126289
+time with open list: 0.121808
+tree CBS: 0.137921
 Planning successful! 
-difference( tree / base): 0.806131
+difference( tree / base): 0.846931
 done; cost: 130
 old: number of developed nodes: 11
-0.0236883
+0.0255239
 Planning successful! 
+time to udate all nodes in new algorithem 4.37e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0004204
 done; cost: 130
-0.0049705
+time with open list: 0.0043436
+0.0051213
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex80.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex81.yaml
 done; cost: 249
 old: number of developed nodes: 5
-base CBS: 0.0190285
+base CBS: 0.0244297
 Planning successful! 
 done; cost: 249
-tree CBS: 0.0172794
+time with open list: 0.007506
+tree CBS: 0.0203758
 Planning successful! 
-difference( tree / base): 0.90808
+difference( tree / base): 0.834059
 done; cost: 191
 old: number of developed nodes: 9
-0.0160172
+0.0175937
 Planning successful! 
+time to udate all nodes in new algorithem 3.8e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.000261
 done; cost: 191
-0.0012802
+time with open list: 0.0009253
+0.0014966
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex82.yaml
 done; cost: 315
 old: number of developed nodes: 7
-base CBS: 0.072753
+base CBS: 0.0284144
 Planning successful! 
 done; cost: 315
-tree CBS: 0.0466599
+time with open list: 0.0073967
+tree CBS: 0.0310636
 Planning successful! 
-difference( tree / base): 0.641347
+difference( tree / base): 1.09323
 done; cost: 257
 old: number of developed nodes: 7
-0.0251424
+0.024802
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001485
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.001343
 done; cost: 257
-0.0066777
+time with open list: 0.0005519
+0.0023456
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex83.yaml
 done; cost: 225
 old: number of developed nodes: 7
-base CBS: 0.0266365
+base CBS: 0.0223652
 Planning successful! 
 done; cost: 225
-tree CBS: 0.0230368
+time with open list: 0.0130007
+tree CBS: 0.0225223
 Planning successful! 
-difference( tree / base): 0.864858
+difference( tree / base): 1.00702
 done; cost: 193
 old: number of developed nodes: 47
-0.0781199
+0.0842335
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001646
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0012469
 done; cost: 193
-0.0622783
+time with open list: 0.0685355
+0.0704442
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex84.yaml
 done; cost: 245
 old: number of developed nodes: 7
-base CBS: 0.0408803
+base CBS: 0.0408485
 Planning successful! 
 done; cost: 245
-tree CBS: 0.0400036
+time with open list: 0.0280629
+tree CBS: 0.0445889
 Planning successful! 
-difference( tree / base): 0.978554
+difference( tree / base): 1.09157
 done; cost: 200
 old: number of developed nodes: 7
-0.0470985
+0.0374003
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001314
 new: number of relevent nodes to re-use:4
+time to insert all reused nodes to open list: 0.0006941
 done; cost: 200
-0.0038045
+time with open list: 0.0003612
+0.0015049
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex85.yaml
 done; cost: 256
 old: number of developed nodes: 27
-base CBS: 0.173447
+base CBS: 0.159153
 Planning successful! 
 done; cost: 256
-tree CBS: 0.150591
+time with open list: 0.12965
+tree CBS: 0.152418
 Planning successful! 
-difference( tree / base): 0.868224
+difference( tree / base): 0.957684
 done; cost: 203
 old: number of developed nodes: 29
-0.0977893
+0.118344
 Planning successful! 
+time to udate all nodes in new algorithem 0.0003351
 new: number of relevent nodes to re-use:13
+time to insert all reused nodes to open list: 0.0005073
 done; cost: 203
-0.015876
+time with open list: 0.0127941
+0.0139151
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex86.yaml
 done; cost: 222
 old: number of developed nodes: 3
-base CBS: 0.0216839
+base CBS: 0.0212975
 Planning successful! 
 done; cost: 222
-tree CBS: 0.0201543
+time with open list: 0.007301
+tree CBS: 0.0195499
 Planning successful! 
-difference( tree / base): 0.929459
+difference( tree / base): 0.917943
 done; cost: 201
 old: number of developed nodes: 7
-0.0208522
+0.0236829
 Planning successful! 
+time to udate all nodes in new algorithem 5.68e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0008812
 done; cost: 201
-0.0074704
+time with open list: 0.0047901
+0.0060458
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex87.yaml
 done; cost: 249
 old: number of developed nodes: 1
-base CBS: 0.0136139
+base CBS: 0.0136948
 Planning successful! 
 done; cost: 249
-tree CBS: 0.0129976
+time with open list: 0.0003934
+tree CBS: 0.0132809
 Planning successful! 
-difference( tree / base): 0.95473
+difference( tree / base): 0.969777
 done; cost: 204
 old: number of developed nodes: 7
-0.0269022
+0.0278547
 Planning successful! 
+time to udate all nodes in new algorithem 4.25e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0035285
 done; cost: 204
-0.0201945
+time with open list: 0.0142002
+0.0180995
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex88.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex89.yaml
 done; cost: 153
 old: number of developed nodes: 3
-base CBS: 0.006596
+base CBS: 0.0066104
 Planning successful! 
 done; cost: 153
-tree CBS: 0.0069453
+time with open list: 0.001403
+tree CBS: 0.0066466
 Planning successful! 
-difference( tree / base): 1.05296
+difference( tree / base): 1.00548
 done; cost: 105
 old: number of developed nodes: 3
-0.0062583
+0.0048536
 Planning successful! 
+time to udate all nodes in new algorithem 6.66e-05
 new: number of relevent nodes to re-use:2
+time to insert all reused nodes to open list: 0.0002756
 done; cost: 105
-0.0011045
+time with open list: 0.0002328
+0.000912
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex9.yaml
 done; cost: 213
 old: number of developed nodes: 5
-base CBS: 0.0136509
+base CBS: 0.0131884
 Planning successful! 
 done; cost: 213
-tree CBS: 0.0184439
+time with open list: 0.0058139
+tree CBS: 0.0142575
 Planning successful! 
-difference( tree / base): 1.35111
+difference( tree / base): 1.08106
 done; cost: 158
 old: number of developed nodes: 19
-0.0178051
+0.0161321
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001039
 new: number of relevent nodes to re-use:3
+time to insert all reused nodes to open list: 0.0002742
 done; cost: 158
-0.0093683
+time with open list: 0.0092068
+0.0099135
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex90.yaml
 The new goal location is an obstacle!
@@ -1143,106 +1396,130 @@ The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex92.yaml
 done; cost: 210
 old: number of developed nodes: 1
-base CBS: 0.0138466
+base CBS: 0.0212047
 Planning successful! 
 done; cost: 210
-tree CBS: 0.0137839
+time with open list: 0.0004069
+tree CBS: 0.0167164
 Planning successful! 
-difference( tree / base): 0.995472
+difference( tree / base): 0.788335
 done; cost: 161
 old: number of developed nodes: 1
-0.0097924
+0.010223
 Planning successful! 
+time to udate all nodes in new algorithem 4.6e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0005501
 done; cost: 161
-0.0014877
+time with open list: 0.0003803
+0.001317
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex93.yaml
 done; cost: 245
 old: number of developed nodes: 31
-base CBS: 0.141377
+base CBS: 0.147113
 Planning successful! 
 done; cost: 245
-tree CBS: 0.124391
+time with open list: 0.0944667
+tree CBS: 0.115927
 Planning successful! 
-difference( tree / base): 0.87985
+difference( tree / base): 0.788012
 done; cost: 184
 old: number of developed nodes: 31
-0.0847116
+0.0662644
 Planning successful! 
+time to udate all nodes in new algorithem 0.0016358
 new: number of relevent nodes to re-use:13
+time to insert all reused nodes to open list: 0.0008361
 done; cost: 184
-0.0190543
+time with open list: 0.0218988
+0.0251708
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex94.yaml
 The new goal location is an obstacle!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex95.yaml
 done; cost: 241
 old: number of developed nodes: 35
-base CBS: 0.0559598
+base CBS: 0.0604953
 Planning successful! 
 done; cost: 241
-tree CBS: 0.0740108
+time with open list: 0.0461388
+tree CBS: 0.0634783
 Planning successful! 
-difference( tree / base): 1.32257
+difference( tree / base): 1.04931
 done; cost: 194
 old: number of developed nodes: 5
-0.0147916
+0.0165747
 Planning successful! 
+time to udate all nodes in new algorithem 0.0001732
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0010219
 done; cost: 194
-0.0022284
+time with open list: 0.0004919
+0.00195
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex96.yaml
 The goal location is the same as another agent goal!
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex97.yaml
 done; cost: 214
 old: number of developed nodes: 37
-base CBS: 0.34644
+base CBS: 0.363505
 Planning successful! 
 done; cost: 214
-tree CBS: 0.346868
+time with open list: 0.319078
+tree CBS: 0.333006
 Planning successful! 
-difference( tree / base): 1.00124
+difference( tree / base): 0.916096
 done; cost: 171
 old: number of developed nodes: 19
-0.151076
+0.165312
 Planning successful! 
+time to udate all nodes in new algorithem 0.0002861
 new: number of relevent nodes to re-use:6
+time to insert all reused nodes to open list: 0.0006562
 done; cost: 171
-0.0858212
+time with open list: 0.0677225
+0.0690465
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex98.yaml
 done; cost: 177
 old: number of developed nodes: 11
-base CBS: 0.022445
+base CBS: 0.0221074
 Planning successful! 
 done; cost: 177
-tree CBS: 0.0243418
+time with open list: 0.0100708
+tree CBS: 0.0233722
 Planning successful! 
-difference( tree / base): 1.08451
+difference( tree / base): 1.05721
 done; cost: 118
 old: number of developed nodes: 3
-0.0087677
+0.0076009
 Planning successful! 
+time to udate all nodes in new algorithem 8.53e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.000227
 done; cost: 118
-0.0034944
+time with open list: 0.0019932
+0.0025277
 Planning successful! 
 ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex99.yaml
 done; cost: 260
 old: number of developed nodes: 3
-base CBS: 0.041998
+base CBS: 0.036359
 Planning successful! 
 done; cost: 260
-tree CBS: 0.0379457
+time with open list: 0.0123492
+tree CBS: 0.0414186
 Planning successful! 
-difference( tree / base): 0.903512
+difference( tree / base): 1.13916
 done; cost: 186
 old: number of developed nodes: 1
-0.0135116
+0.0123425
 Planning successful! 
+time to udate all nodes in new algorithem 3.57e-05
 new: number of relevent nodes to re-use:1
+time to insert all reused nodes to open list: 0.0003634
 done; cost: 186
-0.0013083
+time with open list: 0.000387
+0.0009982
 Planning successful! 

@@ -164,16 +164,45 @@ class TREE_CBS {
       auto handle = open.push(tree_root); 
       (*handle)->handle = handle;
     }else{
+      Timer insert_time;
       //This is the second phase (insert to open all nodes from treeNodeVector)
+      int counter = 1;
+      PlanResult<State, Action, Cost> agentSolution;
+      //beg
+      Constraints constraint;
+      LowLevelEnvironment llenv(m_env, agentNumber, constraint);
+      LowLevelSearch_t lowLevel(llenv);
+      bool success = lowLevel.search(initialStates[agentNumber], agentSolution);
+      if (!success) {
+        return false;
+      }
+      //end
       for (auto const& treeNode : treeNodeVector){
-        //initialize "the" agent path (with its new goal location)
-        LowLevelEnvironment llenv(m_env, agentNumber, treeNode->highLevelNodeTree->constraints[agentNumber]);
-        LowLevelSearch_t lowLevel(llenv);
-        bool success = lowLevel.search(initialStates[agentNumber], treeNode->highLevelNodeTree->solution[agentNumber]);
-        treeNode->highLevelNodeTree->cost += treeNode->highLevelNodeTree->solution[agentNumber].cost;
-        if (!success) {
-          return false;
-        }
+        
+        // if (counter == 1){
+        //   //initialize "the" agent path (with its new goal location)
+        //   LowLevelEnvironment llenv(m_env, agentNumber, treeNode->highLevelNodeTree->constraints[agentNumber]);
+        //   LowLevelSearch_t lowLevel(llenv);
+        //   bool success = lowLevel.search(initialStates[agentNumber], treeNode->highLevelNodeTree->solution[agentNumber]);
+        //   treeNode->highLevelNodeTree->cost += treeNode->highLevelNodeTree->solution[agentNumber].cost;
+        //   agentSolution = treeNode->highLevelNodeTree->solution[agentNumber];
+        //   if (!success) {
+        //     return false;
+        //   }
+        // }else{
+        //   treeNode->highLevelNodeTree->solution[agentNumber] = agentSolution;
+        //   treeNode->highLevelNodeTree->cost += treeNode->highLevelNodeTree->solution[agentNumber].cost;
+        // }
+        // counter++;
+        // // update the id to make sure all nodes in the new tree have different id
+        // //note: only the leaves! the inner leaves id remain the same for now (should change it?)
+        // treeNode->highLevelNodeTree->id = id;
+        // id++;
+        // // push node to open list
+        // auto handle = open.push(treeNode); 
+        // (*handle)->handle = handle;
+        treeNode->highLevelNodeTree->solution[agentNumber] = agentSolution;
+        treeNode->highLevelNodeTree->cost +=agentSolution.cost;
         // update the id to make sure all nodes in the new tree have different id
         //note: only the leaves! the inner leaves id remain the same for now (should change it?)
         treeNode->highLevelNodeTree->id = id;
@@ -182,21 +211,29 @@ class TREE_CBS {
         auto handle = open.push(treeNode); 
         (*handle)->handle = handle;
       }
+      insert_time.stop();
+      std::cout << "time to insert all reused nodes to open list: " << insert_time.elapsedSeconds() << std::endl;
     }
 
     solution.clear();
     //int id = 1;
+    Timer time_open_list;
+    //to remove:
+    int number_of_developed_nodes = 0;
     while (!open.empty()) {
       treeNode<HighLevelNode, Conflict>* P = open.top();
       m_env.onExpandHighLevelNode(P->highLevelNodeTree->cost);
       // std::cout << "expand: " << P << std::endl;
 
       open.pop();
-
+     
       Conflict conflict;
       if (!m_env.getFirstConflict(P->highLevelNodeTree->solution, conflict)) {
         std::cout << "done; cost: " << P->highLevelNodeTree->cost << std::endl;
         solution = P->highLevelNodeTree->solution;
+
+        time_open_list.stop();
+        std::cout << "time with open list: " << time_open_list.elapsedSeconds() << std::endl;
         return true;
       }
       //insert conflict to tree_node (P->conflict represent the conflict that makes this node to split!)
@@ -235,6 +272,8 @@ class TREE_CBS {
 
         newNode->cost += newNode->solution[i].cost;
 
+        //to remove: (for debuge)
+        number_of_developed_nodes++;
 
 
         //insert newNode to tree

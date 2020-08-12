@@ -53,7 +53,8 @@ namespace libMultiRobotPlanning {
 
 
             std::vector<treeNode<HighLevelNode,Conflict>*> PreorderPrunTreeTraveling(size_t agentId, int timeStep, int& id, std::size_t agentNumber,std::vector<State> &startStates){
-                PreorderPrunTreeTravelingPriv(root, agentId, timeStep,id, agentNumber, startStates);
+                bool simple_node_with_zero_constraints_exist = false;
+                PreorderPrunTreeTravelingPriv(root, agentId, timeStep,id, agentNumber, startStates, simple_node_with_zero_constraints_exist);
                 return new_tree_leafs;
             }
             treeNode<HighLevelNode, Conflict>* GetRoot(){
@@ -71,7 +72,7 @@ namespace libMultiRobotPlanning {
             //Prun node right and left childs 
             void prunSubTreePriv(treeNode<HighLevelNode, Conflict> *node);
 
-            void PreorderPrunTreeTravelingPriv(treeNode<HighLevelNode, Conflict>* node, size_t agentId, int timeStep, int& id,std::size_t agentNumber,std::vector<State> &startStates);
+            void PreorderPrunTreeTravelingPriv(treeNode<HighLevelNode, Conflict>* node, size_t agentId, int timeStep, int& id,std::size_t agentNumber,std::vector<State> &startStates, bool &simple_node_with_zero_constraints_exist);
 
             std::vector<treeNode<HighLevelNode,Conflict>*> new_tree_leafs;
 
@@ -142,29 +143,29 @@ namespace libMultiRobotPlanning {
 
     //return vector of the new CT leaves (to be inserted to a new open list)
     template<typename HighLevelNode, typename Conflict, typename State>
-    void btree<HighLevelNode, Conflict, State>::PreorderPrunTreeTravelingPriv(treeNode<HighLevelNode, Conflict>* node, size_t agentId, int timeStep, int& id,std::size_t agentNumber,std::vector<State> &startStates){
+    void btree<HighLevelNode, Conflict, State>::PreorderPrunTreeTravelingPriv(treeNode<HighLevelNode, Conflict>* node, size_t agentId, int timeStep, int& id,std::size_t agentNumber,std::vector<State> &startStates, bool &simple_node_with_zero_constraints_exist){
         if (node == NULL) 
             return; 
         if(node->conflict.time > timeStep){
             if ((node->conflict.agent1 == agentId) || (node->conflict.agent2 == agentId) ){
                 prunSubTreePriv(node);
-                if( true == UpdateNodes(node, id, timeStep, agentNumber, startStates)){
+                if( true == UpdateNodes(node, id, timeStep, agentNumber, startStates, simple_node_with_zero_constraints_exist)){
                     new_tree_leafs.push_back(node);
                 }
                 return;
             }
         }
         if(node->child_left == NULL && node->child_right == NULL){
-            if( true == UpdateNodes(node, id, timeStep, agentNumber, startStates)){
+            if( true == UpdateNodes(node, id, timeStep, agentNumber, startStates, simple_node_with_zero_constraints_exist)){
                 new_tree_leafs.push_back(node);
             }
         }
         
         /* then recur on the left subtree */
-        PreorderPrunTreeTravelingPriv(node->child_left, agentId, timeStep,id, agentNumber, startStates);  
+        PreorderPrunTreeTravelingPriv(node->child_left, agentId, timeStep,id, agentNumber, startStates,simple_node_with_zero_constraints_exist);  
     
         /* now recur on the right subtree */
-        PreorderPrunTreeTravelingPriv(node->child_right, agentId, timeStep, id, agentNumber, startStates); 
+        PreorderPrunTreeTravelingPriv(node->child_right, agentId, timeStep, id, agentNumber, startStates,simple_node_with_zero_constraints_exist); 
     }
 
     template<typename HighLevelNode, typename Conflict, typename State>
