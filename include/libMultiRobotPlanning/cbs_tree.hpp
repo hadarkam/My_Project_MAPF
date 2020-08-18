@@ -26,9 +26,18 @@ namespace libMultiRobotPlanning {
         }
 
     };
-
-
-
+    template <typename HighLevelNode, typename Conflict>
+    struct compare_set{
+        bool operator()(const treeNode<HighLevelNode,Conflict> *lhs, const treeNode<HighLevelNode,Conflict>  *rhs) const {
+            if (lhs->highLevelNodeTree->constraints < rhs->highLevelNodeTree->constraints){
+                // if(lhs->highLevelNodeTree->solution == rhs->highLevelNodeTree->solution){
+                //     return true;
+                // }
+                return true;
+            }
+            return false;
+        }
+    };
     template <typename HighLevelNode, typename Conflict, typename State>
     class btree{
         public:
@@ -55,12 +64,30 @@ namespace libMultiRobotPlanning {
             std::vector<treeNode<HighLevelNode,Conflict>*> PreorderPrunTreeTraveling(size_t agentId, int timeStep, int& id, std::size_t agentNumber,std::vector<State> &startStates){
                 bool simple_node_with_zero_constraints_exist = false;
                 PreorderPrunTreeTravelingPriv(root, agentId, timeStep,id, agentNumber, startStates, simple_node_with_zero_constraints_exist);
+                std::set<treeNode<HighLevelNode,Conflict>*, compare_set<HighLevelNode,Conflict>> node_set;
+                for (auto const& n : new_tree_leafs){
+                    node_set.insert(n);
+                }
+                new_tree_leafs.clear();
+                for(auto const& n : node_set){
+                    new_tree_leafs.push_back(n);
+                }
                 return new_tree_leafs;
             }
             treeNode<HighLevelNode, Conflict>* GetRoot(){
                 return root;
             }
             void nullToRoot();
+
+            bool compare(const treeNode<HighLevelNode,Conflict> *lhs, const treeNode<HighLevelNode,Conflict>  *rhs) const {
+                if (lhs->highLevelNodeTree->constraints == rhs->highLevelNodeTree->constraints){
+                    // if(lhs->highLevelNodeTree->solution == rhs->highLevelNodeTree->solution){
+                    //     return true;
+                    // }
+                    return true;
+                }
+                return false;
+            }
 
         private:
             void destroy_tree(treeNode<HighLevelNode, Conflict>* leaf);
@@ -150,14 +177,32 @@ namespace libMultiRobotPlanning {
             if ((node->conflict.agent1 == agentId) || (node->conflict.agent2 == agentId) ){
                 prunSubTreePriv(node);
                 if( true == UpdateNodes(node, id, timeStep, agentNumber, startStates, simple_node_with_zero_constraints_exist)){
-                    new_tree_leafs.push_back(node);
+                    // bool exist = false;
+                    // for (auto const& n_to_insert : new_tree_leafs){
+                    //     if(true == compare(node, n_to_insert)){
+                    //         exist = true;
+                    //         break;
+                    //     }
+                    // }
+                    // if (false == exist){
+                        new_tree_leafs.push_back(node);     
+                    // }
                 }
                 return;
             }
         }
         if(node->child_left == NULL && node->child_right == NULL){
             if( true == UpdateNodes(node, id, timeStep, agentNumber, startStates, simple_node_with_zero_constraints_exist)){
-                new_tree_leafs.push_back(node);
+                // bool exist = false;
+                // for (auto const& n_to_insert : new_tree_leafs){
+                //     if(true == compare(node, n_to_insert)){
+                //         exist = true;
+                //         break;
+                //     }
+                // }
+                // if (false == exist){
+                    new_tree_leafs.push_back(node);     
+                // }
             }
         }
         

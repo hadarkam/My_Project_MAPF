@@ -184,8 +184,8 @@ struct hash<EdgeConstraint> {
 }  // namespace std
 
 struct Constraints {
-  std::unordered_set<VertexConstraint> vertexConstraints;
-  std::unordered_set<EdgeConstraint> edgeConstraints;
+  std::set<VertexConstraint> vertexConstraints;
+  std::set<EdgeConstraint> edgeConstraints;
 
   void add(const Constraints& other) {
     vertexConstraints.insert(other.vertexConstraints.begin(),
@@ -217,6 +217,27 @@ struct Constraints {
     }
     return os;
   }
+  //my:
+  friend bool operator==(const Constraints& l, const Constraints& r) {
+    if (l.edgeConstraints == r.edgeConstraints){
+      if(l.vertexConstraints == r.vertexConstraints){
+        return true;
+      }
+    }
+    return false;
+  }
+  //my:
+  friend bool operator<(const Constraints& l, const Constraints& r) {
+    if (l.vertexConstraints < r.vertexConstraints){
+      return true;
+    }else if(l.vertexConstraints == r.vertexConstraints){
+      if (l.edgeConstraints < r.edgeConstraints){
+        return true;
+      }
+    }
+    return false;
+  }
+
 };
 
 struct Location {
@@ -621,7 +642,7 @@ void WriteSolutionToOutputFile(bool success,std::vector<libMultiRobotPlanning::P
   //remove from each constraint with time >= timestep a timestep
       int total_number_of_constraints_in_node =0;
       for ( Constraints& constraint : constraintsVector){
-          std::unordered_set<EdgeConstraint> newEdgeConstraints;
+          std::set<EdgeConstraint> newEdgeConstraints;
           for(EdgeConstraint edgeConstraint : constraint.edgeConstraints){
               if(edgeConstraint.time > timeStep){ // > : we don't care about "the" timeStep constrain (this is the start point)
                       edgeConstraint.time = edgeConstraint.time - timeStep;
@@ -630,7 +651,7 @@ void WriteSolutionToOutputFile(bool success,std::vector<libMultiRobotPlanning::P
           }
           total_number_of_constraints_in_node += newEdgeConstraints.size();
           constraint.edgeConstraints = newEdgeConstraints;
-          std::unordered_set<VertexConstraint> newVertexConstraints;
+          std::set<VertexConstraint> newVertexConstraints;
           for(VertexConstraint vertexConstraint : constraint.vertexConstraints){
               if(vertexConstraint.time > timeStep){
                   vertexConstraint.time = vertexConstraint.time - timeStep;

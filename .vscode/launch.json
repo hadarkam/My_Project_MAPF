@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/debug/cbs",
-            "args": ["-i", "${workspaceFolder}/benchmark/32x32_obst204/map_32by32_obst204_agents10_ex72.yaml", 
+            "args": ["-i", "${workspaceFolder}/benchmark/32x32_obst204/map_32by32_obst204_agents20_ex37.yaml", 
             "--approach", "pruning", "--agentNumber", "3", "--timeStep", "5", "--x", "14", "--y", "13"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

@@ -166,7 +166,7 @@ class TREE_CBS {
     }else{
       Timer insert_time;
       //This is the second phase (insert to open all nodes from treeNodeVector)
-      int counter = 1;
+      //int counter = 1;
       PlanResult<State, Action, Cost> agentSolution;
       //beg
       Constraints constraint;

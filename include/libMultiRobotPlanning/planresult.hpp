@@ -25,6 +25,9 @@ struct PlanResult {
   Cost cost;
   //! lower bound of the cost (for suboptimal solvers)
   Cost fmin;
+  friend bool operator==(const PlanResult& l, const PlanResult& r) {
+    return l.states == r.states && l.actions == r.actions;
+  }
 };
 
 }  // namespace libMultiRobotPlanning

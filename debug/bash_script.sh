@@ -1,5 +1,5 @@
 # (31,1)
-for f in ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex*; do
+for f in ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex13*; do
     if [ "$f" == "../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex54.yaml" ]; then
         continue
     fi
@@ -19,6 +19,9 @@ for f in ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex*; do
         continue
     fi
     if [ "$f" == "../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex33.yaml" ]; then
+        continue
+    fi
+    if [ "$f" == "../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex44.yaml" ]; then
         continue
     fi
     if [ "$f" == "../benchmark/32x32_obst204/map_32by32_obst204_agents20_ex5.yaml" ]; then
@@ -92,6 +95,6 @@ for f in ../benchmark/32x32_obst204/map_32by32_obst204_agents10_ex*; do
     # for t in {1..10}; do  
     #     ./cbs -i $f --approach pruning --agentNumber 3 --timeStep "$t" --x 14 --y 13; 
     # done
-    ./cbs -i $f --approach pruning --agentNumber 3 --timeStep 5 --x 14 --y 13;
+    ./cbs -i $f --approach pruning --agentNumber 3 --timeStep 5 --x 1 --y 31;
     done > my_results.txt
 # (14,13) : 44 , 86
