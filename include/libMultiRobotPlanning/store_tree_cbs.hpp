@@ -95,9 +95,6 @@ class TREE_CBS {
       return cost > n.cost;
       // return id > n.id;
     }
-    // HighLevelNode(const HighLevelNode &t): solution(t.solution), constraints(t.constraints) {
-    // } 
-    // HighLevelNode(){}
 
     friend std::ostream& operator<<(std::ostream& os, const HighLevelNode& c) {
       os << "id: " << c.id << " cost: " << c.cost << std::endl;
@@ -129,11 +126,7 @@ class TREE_CBS {
       start->id = 0;
 
       for (size_t i = 0; i < initialStates.size(); ++i) {
-        // if (   i < solution.size()
-        //     && solution[i].states.size() > 1) {
-        //   start.solution[i] = solution[i];
-        //   std::cout << "use existing solution for agent: " << i << std::endl;
-        // } else {
+
         LowLevelEnvironment llenv(m_env, i, start->constraints[i]);
         LowLevelSearch_t lowLevel(llenv);
         bool success = lowLevel.search(initialStates[i], start->solution[i]);
@@ -154,7 +147,7 @@ class TREE_CBS {
     if (cbs_tree->GetRoot() == NULL || treeNodeVector.empty()){
       //initialize binary tree and insert root (=start)
       //btree<State,Action,Cost, Conflict, Constraints, Environment> *cbs_tree = new btree<State,Action,Cost, Conflict, Constraints, Environment>();
-      //root conflict is null until we find the first conflict (we will split with)
+      //root's conflict is null until we find the first conflict (we will split with)
       tree_root = cbs_tree->insertRoot(start);
     }
     
@@ -179,28 +172,6 @@ class TREE_CBS {
       //end
       for (auto const& treeNode : treeNodeVector){
         
-        // if (counter == 1){
-        //   //initialize "the" agent path (with its new goal location)
-        //   LowLevelEnvironment llenv(m_env, agentNumber, treeNode->highLevelNodeTree->constraints[agentNumber]);
-        //   LowLevelSearch_t lowLevel(llenv);
-        //   bool success = lowLevel.search(initialStates[agentNumber], treeNode->highLevelNodeTree->solution[agentNumber]);
-        //   treeNode->highLevelNodeTree->cost += treeNode->highLevelNodeTree->solution[agentNumber].cost;
-        //   agentSolution = treeNode->highLevelNodeTree->solution[agentNumber];
-        //   if (!success) {
-        //     return false;
-        //   }
-        // }else{
-        //   treeNode->highLevelNodeTree->solution[agentNumber] = agentSolution;
-        //   treeNode->highLevelNodeTree->cost += treeNode->highLevelNodeTree->solution[agentNumber].cost;
-        // }
-        // counter++;
-        // // update the id to make sure all nodes in the new tree have different id
-        // //note: only the leaves! the inner leaves id remain the same for now (should change it?)
-        // treeNode->highLevelNodeTree->id = id;
-        // id++;
-        // // push node to open list
-        // auto handle = open.push(treeNode); 
-        // (*handle)->handle = handle;
         treeNode->highLevelNodeTree->solution[agentNumber] = agentSolution;
         treeNode->highLevelNodeTree->cost +=agentSolution.cost;
         // update the id to make sure all nodes in the new tree have different id
@@ -239,17 +210,11 @@ class TREE_CBS {
       //insert conflict to tree_node (P->conflict represent the conflict that makes this node to split!)
       P->conflict = conflict;
 
-      // create additional nodes to resolve conflict
-      // std::cout << "Found conflict: " << conflict << std::endl;
-      // std::cout << "Found conflict at t=" << conflict.time << " type: " <<
-      // conflict.type << std::endl;
-
       std::map<size_t, Constraints> constraints;
       m_env.createConstraintsFromConflict(conflict, constraints);
       for (const auto& c : constraints) {
-        // std::cout << "Add HL node for " << c.first << std::endl;
+        
         size_t i = c.first;
-        // std::cout << "create child with id " << id << std::endl;
 
         HighLevelNode *newNode = new HighLevelNode();
         newNode->constraints = P->highLevelNodeTree->constraints;

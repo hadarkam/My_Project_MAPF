@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 
+
 #include <boost/functional/hash.hpp>
 #include <boost/program_options.hpp>
 
@@ -734,10 +735,14 @@ int main(int argc, char* argv[]) {
   // Declare the supported options.
   po::options_description desc("Allowed options");
   std::string inputFile;
-  std::string outputFileBase = "/home/hadar/My_Project_MAPF/debug/outputFileBase.yaml";
-  std::string outputFileNew = "/home/hadar/My_Project_MAPF/debug/outputFileNew.yaml";
-  std::string secondOutputFileBase = "/home/hadar/My_Project_MAPF/debug/secondOutputFileBase.yaml";
-  std::string secondOutputFileNew = "/home/hadar/My_Project_MAPF/debug/secondOutputFileNew.yaml";
+  // std::string outputFileBase = "/home/hadar/My_Project_MAPF/debug/outputFileBase.yaml";
+  // std::string outputFileNew = "/home/hadar/My_Project_MAPF/debug/outputFileNew.yaml";
+  // std::string secondOutputFileBase = "/home/hadar/My_Project_MAPF/debug/secondOutputFileBase.yaml";
+  // std::string secondOutputFileNew = "/home/hadar/My_Project_MAPF/debug/secondOutputFileNew.yaml";
+  std::string outputFileBase;
+  std::string outputFileNew;
+  std::string secondOutputFileBase;
+  std::string secondOutputFileNew;
   std::string approach;
   std::size_t agentNumber;
   int timeStep;
@@ -748,6 +753,14 @@ int main(int argc, char* argv[]) {
       ("help", "produce help message")
       ("input,i", po::value<std::string>(&inputFile)->required(),
       "input file (YAML)")
+      ("outputFileBase", po::value<std::string>(&outputFileBase)->required(),
+      "output file Baseline (YAML)")
+      ("outputFileNew", po::value<std::string>(&outputFileNew)->required(),
+      "output file new (YAML)")
+      ("secondOutputFileBase", po::value<std::string>(&secondOutputFileBase)->required(),
+      "second output file Baseline (YAML)")
+      ("secondOutputFileNew", po::value<std::string>(&secondOutputFileNew)->required(),
+      "second output file new (YAML)")
       ("approach", po::value<std::string>(&approach)->required(),
       "naive or pruning approach")
       ("agentNumber", po::value<std::size_t>(&agentNumber)->required(),
@@ -797,7 +810,7 @@ int main(int argc, char* argv[]) {
   }
 
   //Flags checks:
-  //1. The goal is inside the map borders and is not obstacles 
+  //1. Check that the goal is inside the map borders and that it is not an obstacle
   if(goal_x > dimx || goal_x < 0 || goal_y < 0|| goal_y >dimy){
     std::cout << "The new goal location is out of map borders!" << std::endl;
     return 0; 
@@ -844,7 +857,7 @@ int main(int argc, char* argv[]) {
   // return 0 ;
 
 
-  // todo: compare run time between to different "first phase"
+  
 
   //************first phase*************// - without saving a tree (regular run)
   // First run of CBS
@@ -853,7 +866,7 @@ int main(int argc, char* argv[]) {
   std::vector<PlanResult<State, Action, int> > solution;
 
   Timer timer;
-  bool success = cbs.search(startStates, solution, myfile2, agentNumber, timeStep, myfile3); // for enalyse: myfile2, agentNumber, timeStep
+  bool success = cbs.search(startStates, solution, myfile2, agentNumber, timeStep, myfile3); // for analysis: myfile2, agentNumber, timeStep
   timer.stop();
   std::cout << "base CBS: " << timer.elapsedSeconds() << std::endl;
 
@@ -894,7 +907,7 @@ int main(int argc, char* argv[]) {
     if(solution[a].states.size() <= (size_t)timeStep){
       // the agent has arrived at its goal location
       if( a == agentNumber){
-        //in this case our agent allready arrived to its old goal but now he needs to go to its new goal
+        //in this case, our agent already arrived at its old goal but now he needs to go to its new goal
         // Note: if I want him to remain in its old goal then no second phase needs to occur.
         startStates[a].x = solution[a].states.back().first.x;
         startStates[a].y =solution[a].states.back().first.y;

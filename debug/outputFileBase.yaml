@@ -1,7 +1,7 @@
 statistics:
   cost: 269
   makespan: 46
-  runtime: 5.54934
+  runtime: 6.27053
   highLevelExpanded: 47
   lowLevelExpanded: 370271
 schedule:

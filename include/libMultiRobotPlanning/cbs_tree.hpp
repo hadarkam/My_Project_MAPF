@@ -30,9 +30,6 @@ namespace libMultiRobotPlanning {
     struct compare_set{
         bool operator()(const treeNode<HighLevelNode,Conflict> *lhs, const treeNode<HighLevelNode,Conflict>  *rhs) const {
             if (lhs->highLevelNodeTree->constraints < rhs->highLevelNodeTree->constraints){
-                // if(lhs->highLevelNodeTree->solution == rhs->highLevelNodeTree->solution){
-                //     return true;
-                // }
                 return true;
             }
             return false;
@@ -81,9 +78,6 @@ namespace libMultiRobotPlanning {
 
             bool compare(const treeNode<HighLevelNode,Conflict> *lhs, const treeNode<HighLevelNode,Conflict>  *rhs) const {
                 if (lhs->highLevelNodeTree->constraints == rhs->highLevelNodeTree->constraints){
-                    // if(lhs->highLevelNodeTree->solution == rhs->highLevelNodeTree->solution){
-                    //     return true;
-                    // }
                     return true;
                 }
                 return false;
@@ -168,7 +162,7 @@ namespace libMultiRobotPlanning {
         }
     }
 
-    //return vector of the new CT leaves (to be inserted to a new open list)
+    //return a vector of the new CT leaves (to be inserted to a new open list)
     template<typename HighLevelNode, typename Conflict, typename State>
     void btree<HighLevelNode, Conflict, State>::PreorderPrunTreeTravelingPriv(treeNode<HighLevelNode, Conflict>* node, size_t agentId, int timeStep, int& id,std::size_t agentNumber,std::vector<State> &startStates, bool &simple_node_with_zero_constraints_exist){
         if (node == NULL) 
@@ -177,32 +171,14 @@ namespace libMultiRobotPlanning {
             if ((node->conflict.agent1 == agentId) || (node->conflict.agent2 == agentId) ){
                 prunSubTreePriv(node);
                 if( true == UpdateNodes(node, id, timeStep, agentNumber, startStates, simple_node_with_zero_constraints_exist)){
-                    // bool exist = false;
-                    // for (auto const& n_to_insert : new_tree_leafs){
-                    //     if(true == compare(node, n_to_insert)){
-                    //         exist = true;
-                    //         break;
-                    //     }
-                    // }
-                    // if (false == exist){
                         new_tree_leafs.push_back(node);     
-                    // }
                 }
                 return;
             }
         }
         if(node->child_left == NULL && node->child_right == NULL){
             if( true == UpdateNodes(node, id, timeStep, agentNumber, startStates, simple_node_with_zero_constraints_exist)){
-                // bool exist = false;
-                // for (auto const& n_to_insert : new_tree_leafs){
-                //     if(true == compare(node, n_to_insert)){
-                //         exist = true;
-                //         break;
-                //     }
-                // }
-                // if (false == exist){
                     new_tree_leafs.push_back(node);     
-                // }
             }
         }
         

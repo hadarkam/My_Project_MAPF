@@ -111,7 +111,7 @@ class CBS {
                                      boost::heap::mutable_<true> >
         open; //note: implemented as max heap data structer
 
-    auto handle = open.push(start); //push return value is a pointer to HighLevelNode
+    auto handle = open.push(start); //push's return value is a pointer to HighLevelNode
     (*handle).handle = handle;
 
     solution.clear();
